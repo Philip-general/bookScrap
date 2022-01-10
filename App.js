@@ -5,16 +5,16 @@ import { getDatabase } from 'firebase/database'
 import config from './confing'
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_DATABASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_URL,
-  databaseURL: process.env.FIREBASE_DATABASE_URL,
-  storageBucket: process.env.FIREBASE_STORAGE_URL,
+  apiKey: config.FIREBASE_DATABASE_API_KEY,
+  authDomain: config.FIREBASE_AUTH_URL,
+  databaseURL: config.FIREBASE_DATABASE_URL,
+  storageBucket: config.FIREBASE_STORAGE_URL,
 }
 
 const app = initializeApp(firebaseConfig)
 // Get a reference to the database service
 const database = getDatabase(app)
-
+console.log(firebaseConfig)
 export default function App() {
   return (
     <View style={styles.container}>
