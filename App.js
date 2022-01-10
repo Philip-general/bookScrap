@@ -12,14 +12,13 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
-
 // Get a reference to the database service
 const database = getDatabase(app)
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>{config.FIREBASE_DATABASE_API_KEY}</Text>
+      <Text>asdf</Text>
       <StatusBar style="auto" />
     </View>
   )
