@@ -1,10 +1,17 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  ActivityIndicator,
+} from "react-native";
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import config from "./confing";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
+import Loading from "./components/Loading";
 
 const firebaseConfig = {
   apiKey: config.FIREBASE_DATABASE_API_KEY,
@@ -18,7 +25,9 @@ const database = getDatabase(app);
 function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      <Text>Loading...</Text>
+      <ActivityIndicator size="large" />
+      <Text>{firebaseConfig.apiKey}</Text>
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate("Details")}
@@ -39,7 +48,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={Loading} />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,14 +1,14 @@
 module.exports = function (api) {
-  api.cache(true)
+  api.cache(true);
   return {
-    presets: ['babel-preset-expo'],
+    presets: ["babel-preset-expo"],
     plugins: [
       [
-        'module:react-native-dotenv',
+        "module:react-native-dotenv",
         {
-          envName: 'APP_ENV',
-          moduleName: '@env',
-          path: '.env',
+          envName: "APP_ENV",
+          moduleName: "@env",
+          path: ".env",
           blocklist: null,
           allowlist: null,
           blacklist: null, // DEPRECATED
@@ -19,5 +19,5 @@ module.exports = function (api) {
         },
       ],
     ],
-  }
-}
+  };
+};
