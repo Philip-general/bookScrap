@@ -1,6 +1,6 @@
 import { Text, View, Button, ActivityIndicator } from "react-native";
 import { firebaseConfig } from "../firbase";
-import { styles } from "./common/style";
+import { styles } from "../components/common/style";
 
 export function HomeScreen({ navigation }) {
   return (
