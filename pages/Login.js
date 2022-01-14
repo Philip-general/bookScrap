@@ -58,9 +58,9 @@ export default function Login() {
         {errors.password && <Text>This is required.</Text>}
 
         <View style={styles.container}>
-          <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+          <Button title="login 하기" onPress={handleSubmit(onSubmit)} />
           <Button
-            title="Signup"
+            title="회원 가입하러 가기"
             onPress={() => {
               navigation.navigate("Signup");
             }}
