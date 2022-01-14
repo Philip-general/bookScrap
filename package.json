@@ -16,11 +16,13 @@
     "firebase": "^9.6.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-hook-form": "^7.23.0",
     "react-native": "0.64.3",
     "react-native-config": "^1.4.5",
     "react-native-dotenv": "^3.3.1",
     "react-native-safe-area-context": "3.3.2",
-    "react-native-screens": "~3.10.1"
+    "react-native-screens": "~3.10.1",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
