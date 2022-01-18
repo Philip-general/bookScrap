@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { View, Text, Button, Alert, StyleSheet, TextInput } from "react-native";
 import { styles } from "../components/common/style";
+import { auth, loginEmail } from "../firbase";
 
 export default function Login() {
   const {
@@ -10,11 +11,19 @@ export default function Login() {
     control,
     formState: { isValid, errors },
   } = useForm({ mode: "onChange" });
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
   const navigation = useNavigation();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    const { email, password } = data;
+    try {
+      const result = await loginEmail(email, password);
+      console.log("이메일 로그인 성공");
+      navigation.navigate("Home");
+    } catch (e) {
+      console.log("로그인에 실패했습니다.");
+    }
+  };
 
   return (
     <View>

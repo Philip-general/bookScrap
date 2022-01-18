@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { HomeScreen } from "./pages/HomeScreen";
+import { Home, HomeScreen } from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
@@ -13,7 +13,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
   );

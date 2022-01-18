@@ -1,7 +1,9 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { View, Text, Button, TextInput } from "react-native";
 import { styles } from "../components/common/style";
+import { signupEmail } from "../firbase";
 
 export default function Signup() {
   const {
@@ -9,8 +11,18 @@ export default function Signup() {
     control,
     formState: { errors },
   } = useForm({ mode: "onChange" });
-  const onSubmit = (data) => {
+
+  const navigation = useNavigation();
+  const onSubmit = async (data) => {
     console.log(data);
+    const { email, password } = data;
+    try {
+      const result = await signupEmail(email, password);
+      console.log("회원가입 성공", result);
+      navigation.navigate("Login", { email, password });
+    } catch (e) {
+      console.log("회원가입 실패", e);
+    }
   };
   return (
     <View>

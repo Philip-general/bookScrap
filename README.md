@@ -19,6 +19,14 @@ React Native
 
 국내 도서 정보 API: https://steemit.com/kr/@anpigon/open-api
 
+카카오 도서 검색 API: https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide
+https://developers.kakao.com/tool/rest-api/open/get/v3-search-book
+
+> > 이걸로 하자
+
+curl > axios
+https://www.crocus.co.kr/1737
+
 ## 비교
 
 리더스:
