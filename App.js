@@ -1,35 +1,20 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
-import { initializeApp } from 'firebase/app'
-import { getDatabase } from 'firebase/database'
-import config from './confing'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { NavigationContainer } from '@react-navigation/native'
+import { Home, HomeScreen } from './pages/Home'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 
-const firebaseConfig = {
-  apiKey: process.env.FIREBASE_DATABASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_URL,
-  databaseURL: process.env.FIREBASE_DATABASE_URL,
-  storageBucket: process.env.FIREBASE_STORAGE_URL,
-}
+const Stack = createNativeStackNavigator()
 
-const app = initializeApp(firebaseConfig)
-
-// Get a reference to the database service
-const database = getDatabase(app)
-console.log(database)
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>asdf</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
