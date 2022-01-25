@@ -4,6 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { View, Text, Button, TextInput } from "react-native";
 import { styles } from "../components/common/style";
 import { signupEmail } from "../firbase";
+import { EmailLoginData } from "../type";
 
 export default function Signup() {
   const {
@@ -13,11 +14,11 @@ export default function Signup() {
   } = useForm({ mode: "onChange" });
 
   const navigation = useNavigation();
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: EmailLoginData) => {
     console.log(data);
     const { email, password } = data;
     try {
-      const result = await signupEmail(email, password);
+      const result = await signupEmail({ email, password });
       console.log("회원가입 성공", result);
       navigation.navigate("Login", { email, password });
     } catch (e) {
@@ -38,7 +39,6 @@ export default function Signup() {
               style={styles.input}
               onChangeText={onChange}
               value={value}
-              type={"text"}
               placeholder="email"
             />
           )}
@@ -57,7 +57,6 @@ export default function Signup() {
               style={styles.input}
               onChangeText={onChange}
               value={value}
-              type={"text"}
               placeholder="password"
             />
           )}
