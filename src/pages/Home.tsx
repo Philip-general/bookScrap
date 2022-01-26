@@ -37,8 +37,6 @@ export default function Home() {
       <Button title="책 검색하기" onPress={handleSubmit(searchBook)} />
 
       {books.map(({ title, authors, thumbnail, isbn }) => {
-        const a = `"${thumbnail}"`;
-
         return (
           <View key={isbn}>
             <Text>{title}</Text>
