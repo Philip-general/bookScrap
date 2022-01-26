@@ -4,7 +4,7 @@ import {
   FIREBASE_DATABASE_URL,
   FIREBASE_STORAGE_URL,
   KAKAO_BOOK_SEARCH_API_KEY,
-} from '@env'
+} from "@env";
 
 export default {
   FIREBASE_DATABASE_API_KEY,
@@ -12,4 +12,4 @@ export default {
   FIREBASE_DATABASE_URL,
   FIREBASE_STORAGE_URL,
   KAKAO_BOOK_SEARCH_API_KEY,
-}
+};

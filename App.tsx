@@ -1,9 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import Home from "./src/pages/Home";
+import Login from "./src/pages/Login";
+import Signup from "./src/pages/Signup";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 const Stack = createNativeStackNavigator();
@@ -15,8 +15,8 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Signup" component={Signup} />
+          {/* <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Signup" component={Signup} /> */}
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>
