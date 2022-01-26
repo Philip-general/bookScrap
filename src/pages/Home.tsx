@@ -1,5 +1,5 @@
 import { Text, View, Button, TextInput, Image } from "react-native";
-import { styles } from "../components/common/style";
+import { styles } from "../style";
 import axios from "axios";
 import config from "../constants/config";
 import { Controller, useForm } from "react-hook-form";
@@ -19,7 +19,6 @@ export default function Home() {
     const getBooks = await useGetBooks(bookName);
     setBooks(getBooks);
   };
-
   return (
     <View style={styles.container}>
       <Controller
@@ -37,13 +36,22 @@ export default function Home() {
       />
       <Button title="책 검색하기" onPress={handleSubmit(searchBook)} />
 
-      {books.map(({ title, authors, thumbnail, isbn }) => (
-        <View key={isbn}>
-          <Text>{title}</Text>
-          <Text>{authors}</Text>
-          {/* <Image source={{uri:{thumbnail}}}>{title}</Image> */}
-        </View>
-      ))}
+      {books.map(({ title, authors, thumbnail, isbn }) => {
+        const a = `"${thumbnail}"`;
+
+        return (
+          <View key={isbn}>
+            <Text>{title}</Text>
+            <Text>{authors}</Text>
+            <Image
+              style={styles.bookImg}
+              source={{
+                uri: thumbnail,
+              }}
+            />
+          </View>
+        );
+      })}
     </View>
   );
 }

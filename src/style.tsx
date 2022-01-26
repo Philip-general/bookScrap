@@ -11,4 +11,8 @@ export const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
   },
+  bookImg: {
+    width: 50,
+    height: 50,
+  },
 });
