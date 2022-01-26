@@ -6,6 +6,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useGetBooks } from "../hooks/book";
 import { useState } from "react";
 import { bookSearchForm } from "../../types/type";
+import SearchedBook from "../components/SearchedBook";
 
 export default function Home() {
   const {
@@ -19,6 +20,9 @@ export default function Home() {
     const getBooks = await useGetBooks(bookName);
     setBooks(getBooks);
   };
+
+  let id = 0;
+  console.log(books);
   return (
     <View style={styles.container}>
       <Controller
@@ -35,22 +39,18 @@ export default function Home() {
         )}
       />
       <Button title="책 검색하기" onPress={handleSubmit(searchBook)} />
-      <ScrollView>
-        {books.map(({ title, authors, thumbnail, isbn }) => {
+      <View>
+        {books.map(({ title, authors, thumbnail }) => {
           return (
-            <View key={isbn}>
-              <Text>{title}</Text>
-              <Text>{authors}</Text>
-              <Image
-                style={styles.bookImg}
-                source={{
-                  uri: thumbnail,
-                }}
-              />
-            </View>
+            <SearchedBook
+              key={++id}
+              authors={authors}
+              thumbnail={thumbnail}
+              title={title}
+            />
           );
         })}
-      </ScrollView>
+      </View>
     </View>
   );
 }
