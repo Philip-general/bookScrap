@@ -1,4 +1,4 @@
-import { Text, View, Button, TextInput, Image } from "react-native";
+import { Text, View, Button, TextInput, Image, ScrollView } from "react-native";
 import { styles } from "../style";
 import axios from "axios";
 import config from "../constants/config";
@@ -35,21 +35,22 @@ export default function Home() {
         )}
       />
       <Button title="책 검색하기" onPress={handleSubmit(searchBook)} />
-
-      {books.map(({ title, authors, thumbnail, isbn }) => {
-        return (
-          <View key={isbn}>
-            <Text>{title}</Text>
-            <Text>{authors}</Text>
-            <Image
-              style={styles.bookImg}
-              source={{
-                uri: thumbnail,
-              }}
-            />
-          </View>
-        );
-      })}
+      <ScrollView>
+        {books.map(({ title, authors, thumbnail, isbn }) => {
+          return (
+            <View key={isbn}>
+              <Text>{title}</Text>
+              <Text>{authors}</Text>
+              <Image
+                style={styles.bookImg}
+                source={{
+                  uri: thumbnail,
+                }}
+              />
+            </View>
+          );
+        })}
+      </ScrollView>
     </View>
   );
 }
