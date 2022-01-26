@@ -13,9 +13,13 @@ export const useGetBooks = async (bookName: string): Promise<any> => {
     },
   });
   console.log("useGetBooks 실행");
-  const books = res.data.documents;
+  const books: [] = res.data.documents;
   // books.forEach((book: { title: string; authors: []; thumbnail: string }) => {
   //   console.log(book.title, book.authors, book.thumbnail);
   // });
+  // console.log(
+  // "@2@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+  // );
+  // console.log("dd", books);
   return books;
 };

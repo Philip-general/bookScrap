@@ -1,4 +1,4 @@
-import { Text, View, Button, TextInput } from "react-native";
+import { Text, View, Button, TextInput, Image } from "react-native";
 import { styles } from "../components/common/style";
 import axios from "axios";
 import config from "../constants/config";
@@ -14,10 +14,10 @@ export default function Home() {
     formState: { errors },
   } = useForm();
 
-  const [books, setBooks] = useState({});
+  const [books, setBooks] = useState([]);
   const searchBook = async ({ bookName }: bookSearchForm) => {
-    const books = await useGetBooks(bookName);
-    console.log(books);
+    const getBooks = await useGetBooks(bookName);
+    setBooks(getBooks);
   };
 
   return (
@@ -35,7 +35,15 @@ export default function Home() {
           />
         )}
       />
-      <Button title="책 추가하기" onPress={handleSubmit(searchBook)} />
+      <Button title="책 검색하기" onPress={handleSubmit(searchBook)} />
+
+      {books.map(({ title, authors, thumbnail, isbn }) => (
+        <View key={isbn}>
+          <Text>{title}</Text>
+          <Text>{authors}</Text>
+          {/* <Image source={{uri:{thumbnail}}}>{title}</Image> */}
+        </View>
+      ))}
     </View>
   );
 }
