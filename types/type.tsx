@@ -6,3 +6,11 @@ export interface EmailLoginData {
 export type bookSearchForm = {
   bookName: string;
 };
+
+export type bookData = [
+  {
+    title: string;
+    authors: [string];
+    thumbnail: string;
+  }
+];

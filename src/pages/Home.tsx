@@ -1,28 +1,26 @@
 import { Text, View, Button, TextInput, Image, ScrollView } from "react-native";
 import { styles } from "../style";
-import axios from "axios";
-import config from "../constants/config";
+
 import { Controller, useForm } from "react-hook-form";
 import { useGetBooks } from "../hooks/book";
 import { useState } from "react";
-import { bookSearchForm } from "../../types/type";
 import SearchedBook from "../components/SearchedBook";
 
 export default function Home() {
+  const [bookName, setBookName] = useState("");
+  const { data: books, refetch } = useGetBooks(bookName);
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const [books, setBooks] = useState([]);
-  const searchBook = async ({ bookName }: bookSearchForm) => {
-    const getBooks = await useGetBooks(bookName);
-    setBooks(getBooks);
+  const searchBook = ({ bookName }) => {
+    setBookName(bookName);
+    refetch();
   };
 
   let id = 0;
-  console.log(books);
   return (
     <View style={styles.container}>
       <Controller
@@ -40,7 +38,7 @@ export default function Home() {
       />
       <Button title="책 검색하기" onPress={handleSubmit(searchBook)} />
       <View>
-        {books.map(({ title, authors, thumbnail }) => {
+        {books?.map(({ title, authors, thumbnail }) => {
           return (
             <SearchedBook
               key={++id}
