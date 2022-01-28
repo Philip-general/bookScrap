@@ -5,7 +5,8 @@ import { bookData } from "../../types/type";
 
 type books = Array<bookData>;
 
-const getBooks = async (bookName: string): Promise<books> => {
+export const getBooks = async (bookName: string): Promise<books> => {
+  console.log("getbooks실행");
   const { data } = await axios({
     method: "get",
     url: `https://dapi.kakao.com/v3/search/book?sort=accuracy&page=1&size=5&query=${bookName}`,
@@ -22,7 +23,10 @@ const getBooks = async (bookName: string): Promise<books> => {
 export const useGetBooks = (bookName: string) => {
   const { data, isLoading, isError, refetch } = useQuery<books, any>(
     ["searchedBooks", bookName],
-    () => getBooks(bookName)
+    () => getBooks(bookName),
+    {
+      refetchOnWindowFocus: false,
+    }
   );
   return { data, isLoading, isError, refetch };
 };
