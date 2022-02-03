@@ -25,7 +25,7 @@ export const useGetBooks = (bookName: string) => {
     ["searchedBooks", bookName],
     () => getBooks(bookName),
     {
-      refetchOnWindowFocus: false,
+      enabled: Boolean(bookName),
     }
   );
   return { data, isLoading, isError, refetch };
