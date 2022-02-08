@@ -14,7 +14,7 @@ export const getBooks = async (bookName: string): Promise<books> => {
       Authorization: `KakaoAK ${config.KAKAO_BOOK_SEARCH_API_KEY}`,
     },
   });
-  console.log("getbooks실행", data);
+  console.log("getbooks실행", data); 
 
   const books: books = data.documents;
 
