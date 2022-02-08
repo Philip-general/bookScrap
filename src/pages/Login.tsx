@@ -13,6 +13,7 @@ export default function Login() {
     mutate,
     data: mutateResult,
     isLoading,
+    isSuccess,
   } = useLoginMutation(email, password)
 
   const navigation = useNavigation()
@@ -23,16 +24,14 @@ export default function Login() {
   } = useForm({ mode: 'onChange' })
 
   const onLogin = async (data: EmailLoginData) => {
-    const { email, password } = data
-    setEmail(email)
-    setPassword(password)
+    setEmail(data.email)
+    setPassword(data.password)
     mutate(data)
-    console.log(mutateResult)
   }
 
   return (
     <View>
-      <Text>회원가입</Text>
+      <Text>로그인하기</Text>
       <View>
         <Controller
           control={control}
@@ -78,6 +77,7 @@ export default function Login() {
             }}
           />
         </View>
+        {isSuccess ? <Text>{JSON.stringify(mutateResult)}</Text> : null}
       </View>
     </View>
   )
