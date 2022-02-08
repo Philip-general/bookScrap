@@ -3,25 +3,31 @@
 // import { Controller, useForm } from "react-hook-form";
 // import { View, Text, Button, Alert, StyleSheet, TextInput } from "react-native";
 // import { EmailLoginData } from "../../types/type";
+// import { useLoginMutation } from "../hooks/login";
+// import { styles } from "../style";
 
 // export default function Login() {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const {
+//     mutate,
+//     data: mutateResult,
+//     isLoading,
+//   } = useLoginMutation(email, password);
+
+//   const navigation = useNavigation();
 //   const {
 //     handleSubmit,
 //     control,
 //     formState: { isValid, errors },
 //   } = useForm({ mode: "onChange" });
-//   const navigation = useNavigation();
 
-//   const onSubmit = async (data: EmailLoginData) => {
-//     console.log(data);
+//   const onLogin = async (data: EmailLoginData) => {
 //     const { email, password } = data;
-//     try {
-//       const result = await loginEmail({ email, password });
-//       console.log("이메일 로그인 성공");
-//       navigation.navigate("Home");
-//     } catch (e) {
-//       console.log("로그인에 실패했습니다.");
-//     }
+//     setEmail(email);
+//     setPassword(password);
+//     mutate(data);
+//     console.log(mutateResult);
 //   };
 
 //   return (
@@ -64,11 +70,11 @@
 //         {errors.password && <Text>This is required.</Text>}
 
 //         <View style={styles.container}>
-//           <Button title="login 하기" onPress={handleSubmit(onSubmit)} />
+//           <Button title="login 하기" onPress={handleSubmit(onLogin)} />
 //           <Button
 //             title="회원 가입하러 가기"
 //             onPress={() => {
-//               navigation.navigate("Signup");
+//               // navigation.navigate("Signup");
 //             }}
 //           />
 //         </View>

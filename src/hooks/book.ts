@@ -9,7 +9,8 @@ export const getBooks = async (bookName: string): Promise<books> => {
   console.log("getbooks실행");
   const { data } = await axios({
     method: "get",
-    url: `https://dapi.kakao.com/v3/search/book?sort=accuracy&page=1&size=5&query=${bookName}`,
+    // 실제 연결시에는 url ``으로 변경 필요
+    url: "https://dapi.kakao.com/v3/search/book?sort=accuracy&page=1&size=5&query=${bookName}",
     headers: {
       Authorization: `KakaoAK ${config.KAKAO_BOOK_SEARCH_API_KEY}`,
     },
