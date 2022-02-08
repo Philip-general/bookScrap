@@ -41,5 +41,17 @@ window.server = createServer({
         };
       }
     });
+    this.post(`/signUp`,(schema,request) => {
+      const {id,password,email} =JSON.parse(request.requestBody);
+      if(id==="조용환"){
+        return{
+          ok:false,
+        }
+      }else{
+        return{
+          ok:true,
+        }
+      }
+    })
   },
 });
