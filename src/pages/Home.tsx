@@ -8,8 +8,8 @@ import SearchedBook from "../components/SearchedBook";
 import { bookData } from "../../types/type";
 
 export default function Home() {
-  const { data: books, isLoading, isError, refetch } = useGetBooks(bookName);
   const [bookName, setBookName] = useState("");
+  const { data: books, isLoading, isError, refetch } = useGetBooks(bookName);
   const {
     control,
     handleSubmit,
