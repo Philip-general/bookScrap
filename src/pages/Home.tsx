@@ -5,6 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useGetBooks } from "../hooks/book";
 import { useState } from "react";
 import SearchedBook from "../components/SearchedBook";
+import { bookData } from "../../types/type";
 
 export default function Home() {
   const [bookName, setBookName] = useState("");
@@ -38,7 +39,7 @@ export default function Home() {
       />
       <Button title="책 검색하기" onPress={handleSubmit(searchBook)} />
       <View>
-        {books?.map(({ title, authors, thumbnail }) => {
+        {books?.map(({ title, authors, thumbnail }: bookData) => {
           return (
             <SearchedBook
               key={++id}

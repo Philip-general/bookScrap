@@ -4,7 +4,7 @@ import { styles } from "../style";
 
 type Props = {
   title: string;
-  authors: string;
+  authors: [string];
   thumbnail?: string;
 };
 
