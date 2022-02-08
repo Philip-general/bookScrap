@@ -2,9 +2,7 @@
 // import React, { useState } from "react";
 // import { Controller, useForm } from "react-hook-form";
 // import { View, Text, Button, Alert, StyleSheet, TextInput } from "react-native";
-// import { styles } from "../components/common/style";
-// import { auth, loginEmail } from "../firbase";
-// import { EmailLoginData } from "../type";
+// import { EmailLoginData } from "../../types/type";
 
 // export default function Login() {
 //   const {

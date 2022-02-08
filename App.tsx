@@ -2,12 +2,13 @@ import { StatusBar } from "expo-status-bar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Home from "./src/pages/Home";
-// import Login from "./src/pages/Login";
-// import Signup from "./src/pages/Signup";
+
 import { QueryClient, QueryClientProvider } from "react-query";
 import { store } from "./src/store/store";
 import { Provider } from "react-redux";
+import { makeServer } from "./src/mocks/server";
 
+makeServer({ environment: "development" });
 const Stack = createNativeStackNavigator();
 const queryClinet = new QueryClient();
 

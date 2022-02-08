@@ -21,12 +21,11 @@ export const getBooks = async (bookName: string): Promise<books> => {
 };
 
 export const useGetBooks = (bookName: string) => {
-  const { data, isLoading, isError, refetch } = useQuery<books, any>(
+  return useQuery<books, any>(
     ["searchedBooks", bookName],
     () => getBooks(bookName),
     {
       enabled: Boolean(bookName),
     }
   );
-  return { data, isLoading, isError, refetch };
 };

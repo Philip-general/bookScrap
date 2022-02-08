@@ -2,9 +2,6 @@
 // import React from "react";
 // import { Controller, useForm } from "react-hook-form";
 // import { View, Text, Button, TextInput } from "react-native";
-// import { styles } from "../components/common/style";
-// import { signupEmail } from "../firbase";
-// import { EmailLoginData } from "../type";
 
 // export default function Signup() {
 //   const {
@@ -14,8 +11,8 @@
 //   } = useForm({ mode: "onChange" });
 
 //   const navigation = useNavigation();
+
 //   const onSubmit = async (data: EmailLoginData) => {
-//     console.log(data);
 //     const { email, password } = data;
 //     try {
 //       const result = await signupEmail({ email, password });
@@ -25,6 +22,7 @@
 //       console.log("회원가입 실패", e);
 //     }
 //   };
+
 //   return (
 //     <View>
 //       <Text>Signup</Text>
@@ -34,7 +32,7 @@
 //           rules={{
 //             required: true,
 //           }}
-//           render={({ field: { onChange, onBlur, value } }) => (
+//           render={({ field: { onChange, value } }) => (
 //             <TextInput
 //               style={styles.input}
 //               onChangeText={onChange}
@@ -44,7 +42,7 @@
 //           )}
 //           name="email"
 //         />
-//         {errors.email && <Text>This is required.</Text>}
+//         {errors.email && <Text>이메일이 필요합니다.</Text>}
 
 //         <Controller
 //           control={control}
@@ -62,7 +60,7 @@
 //           )}
 //           name="password"
 //         />
-//         {errors.password && <Text>This is required.</Text>}
+//         {errors.password && <Text>패스워드가 필요합니다.</Text>}
 
 //         <View style={styles.container}>
 //           <Button
