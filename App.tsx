@@ -7,7 +7,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { store } from "./src/store/store";
 import { Provider } from "react-redux";
 import "./src/mocks/server";
-import { Text, View } from "react-native";
 import React from "react";
 
 const Stack = createNativeStackNavigator();
@@ -28,23 +27,3 @@ export default function App() {
     </Provider>
   );
 }
-
-// export default function App() {
-//   let [movies, setMovies] = React.useState([]);
-
-//   React.useEffect(() => {
-//     fetch("/api/movies")
-//       .then((res) => res.json())
-//       .then((json) => setMovies(json.movies));
-//   }, []);
-
-//   return (
-//     <View>
-//       {movies.map((movie) => (
-//         <Text key={movie.id}>
-//           {movie.name} ({movie.year})
-//         </Text>
-//       ))}
-//     </View>
-//   );
-// }
