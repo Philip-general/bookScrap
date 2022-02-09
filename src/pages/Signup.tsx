@@ -3,11 +3,15 @@ import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { View, Text, Button, TextInput,Alert } from "react-native";
 import { styles } from "../style";
-import { postSignup } from "../hooks/signup";
-import { useMutation } from "react-query";
+import { useSignupMutation } from "../hooks/signup";
 import {signUpInfo} from "../../types/type";
 export default function Signup(){
+    const navigation = useNavigation();
     const [see,setSee]=useState(true)
+    const {mutate} = useSignupMutation()
+    const onSee =()=>{
+        setSee(!see)
+    }
     const {
         control,
         handleSubmit,
@@ -16,35 +20,20 @@ export default function Signup(){
     } = useForm<signUpInfo>({
         mode: "onBlur",
         reValidateMode: "onChange",
-        defaultValues: {
-            id:"",
-            password:"",
-            repassword:"",
-            email:""
-        }
     });
-    const onSee =()=>{
-        setSee(!see)
-    }
-    const checksignup = useMutation(postSignup)
+    
     const onSubmit = async(data:signUpInfo) =>{
         try{
-            const Result = await checksignup.mutateAsync(data)
-            if(Result.data.ok===true){
-                console.log(Result.data)
-                Alert.alert('회원가입', '회원가입을 축하드립니다.', [
-                    { text: 'OK', onPress: () => console.log('OK Pressed')
-                    /*navigation으로 로그인 보내면 될 듯*/ },
-                  ]);
-            }
-            else{
-                console.log(Result.data)
-                Alert.alert('죄송합니다', '동일한 id가 존재합니다.', [
-                    { text: 'OK', onPress: () => console.log('OK Pressed')
-                    /*navigation으로 다시 회원가입로드??아니면 걍 다시 돌아가기*/},
-                  ]);
-            }
-
+            mutate(data,{
+                onSuccess : (result)=>{
+                    result.data.ok?
+                    Alert.alert('회원가입', '회원가입을 축하드립니다.', [
+                    { text: 'OK', onPress: () => console.log('OK Pressed')}
+                    /*navigation.navigate("login페이지",{data})*/
+                ]):
+                    Alert.alert('죄송합니다', '동일한 id가 존재합니다.', [
+                    { text: 'OK', onPress: () => console.log('OK Pressed')}])
+                }})
         }catch(e){
             console.log(e)
         }
