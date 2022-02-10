@@ -17,7 +17,7 @@ export const loginEmail = async ({
   email,
   password,
 }: loginInfo): Promise<loginResult> => {
-  console.log('loginEmail 실행')
+  // console.log('loginEmail 실행')
   const { data } = await axios({
     method: 'post',
     baseURL: BASE_URL,
@@ -29,7 +29,7 @@ export const loginEmail = async ({
   })
 
   const loginResult = data
-  console.log('로그인결과입니다.', loginResult)
+  // console.log('로그인결과입니다.', loginResult)
   return loginResult
 }
 
