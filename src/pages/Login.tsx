@@ -9,10 +9,10 @@ import { styles } from '../style'
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [seePassword, setSeePassword] = useState(false)
   const {
     mutate,
     data: loginResult,
-    isLoading,
     isSuccess,
   } = useLoginMutation(email, password)
 
@@ -28,6 +28,7 @@ export default function Login() {
     setPassword(data.password)
     mutate(data)
   }
+  const onSee = () => setSeePassword(prev => !prev)
 
   return (
     <View>
@@ -62,6 +63,7 @@ export default function Login() {
           render={({ field: { onChange, value } }) => (
             <TextInput
               style={styles.input}
+              secureTextEntry={!seePassword}
               onChangeText={onChange}
               value={value}
               placeholder="password"
@@ -69,9 +71,11 @@ export default function Login() {
           )}
           name="password"
         />
+        <Button title='비밀번호 보기' onPress={onSee}/>
         {errors.password && <Text>{errors.password.message}</Text>}
 
         <View style={styles.container}>
+          {isSuccess ? <Text>{loginResult?.error}</Text> : null}
           <Button title="login 하기" onPress={handleSubmit(onLogin)} />
           <Button
             title="회원 가입하러 가기"
@@ -80,7 +84,6 @@ export default function Login() {
             }}
           />
         </View>
-        {isSuccess ? <Text>{JSON.stringify(loginResult)}</Text> : null}
       </View>
     </View>
   )
