@@ -12,3 +12,10 @@ export type bookData = {
   authors: [string];
   thumbnail: string;
 };
+
+export type signUpInfo ={
+  id:string,
+  password:string,
+  repassword:string,
+  email:string,
+}

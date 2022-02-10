@@ -1,4 +1,4 @@
-import { BASE_URL, LOGIN } from "../hooks/urls/url";
+import { BASE_URL, LOGIN, SIGNUP } from "../hooks/urls/url";
 import { createServer } from "miragejs";
 
 if (window.server) {
@@ -41,5 +41,17 @@ window.server = createServer({
         };
       }
     });
+    this.post(`${BASE_URL}${SIGNUP}`,(schema,request) => {
+      const {id,password,email} =JSON.parse(request.requestBody);
+      if(id==="조용환"){
+        return{
+          ok:false,
+        }
+      }else{
+        return{
+          ok:true,
+        }
+      }
+    })
   },
 });
