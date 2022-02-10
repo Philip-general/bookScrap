@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { View, Text, Button, Alert, StyleSheet, TextInput } from 'react-native'
+import { View, Text, Button, TextInput } from 'react-native'
 import { EmailLoginData } from '../../types/type'
 import { useLoginMutation } from '../hooks/login'
 import { styles } from '../style'
@@ -11,7 +11,7 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const {
     mutate,
-    data: mutateResult,
+    data: loginResult,
     isLoading,
     isSuccess,
   } = useLoginMutation(email, password)
@@ -36,7 +36,10 @@ export default function Login() {
         <Controller
           control={control}
           rules={{
-            required: true,
+            required: "email은 필수 항목입니다.",
+            pattern: {
+              value : /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
+              message : "올바른 email을 입력해 주세요."}
           }}
           render={({ field: { onChange, value } }) => (
             <TextInput
@@ -48,13 +51,13 @@ export default function Login() {
           )}
           name="email"
         />
-        {errors.email && <Text>This is required.</Text>}
+        {errors.email && <Text>{errors.email.message}</Text>}
 
         <Controller
           control={control}
           rules={{
             maxLength: 100,
-            required: true,
+            required: "password는 필수 항목입니다.",
           }}
           render={({ field: { onChange, value } }) => (
             <TextInput
@@ -66,18 +69,18 @@ export default function Login() {
           )}
           name="password"
         />
-        {errors.password && <Text>This is required.</Text>}
+        {errors.password && <Text>{errors.password.message}</Text>}
 
         <View style={styles.container}>
           <Button title="login 하기" onPress={handleSubmit(onLogin)} />
           <Button
             title="회원 가입하러 가기"
             onPress={() => {
-              // navigation.navigate("Signup");
+              navigation.navigate("Signup");
             }}
           />
         </View>
-        {isSuccess ? <Text>{JSON.stringify(mutateResult)}</Text> : null}
+        {isSuccess ? <Text>{JSON.stringify(loginResult)}</Text> : null}
       </View>
     </View>
   )
