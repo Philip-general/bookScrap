@@ -21,7 +21,9 @@ export default function Signup(){
         mode: "onBlur",
         reValidateMode: "onChange",
     });
-    
+    const onLogin =()=>{
+        navigation.navigate("Home")
+    }
     const onSubmit = async(data:signUpInfo) =>{
         try{
             mutate(data,{
@@ -132,7 +134,7 @@ export default function Signup(){
             <View>
                 <Button title="회원가입" onPress={handleSubmit(onSubmit)}/>  
             </View>
-
+                <Button title="로그인하기" onPress={onLogin}></Button>
         </View>
     )
 }
