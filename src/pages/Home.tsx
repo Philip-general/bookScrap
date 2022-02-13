@@ -15,7 +15,6 @@ export default function Home() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const searchBook = ({ bookName }) => {
     setBookName(bookName);
     refetch();
