@@ -1,4 +1,4 @@
-import { BASE_URL, LOGIN, SIGNUP } from "../hooks/urls/url";
+import { BASE_URL, LOGIN, SIGNUP,BOOK } from "../hooks/urls/url";
 import { createServer } from "miragejs";
 
 if (window.server) {
@@ -51,6 +51,24 @@ window.server = createServer({
         return{
           ok:true,
         }
+      }
+    })
+    this.get(`${BASE_URL}${1}${BOOK}`, () => {
+      return{
+        documents:[
+          {
+            title: "더미책1",
+            authors: ["김민국"],
+            thumbnail:
+              "https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1467038",
+          },
+          {
+            title: "더미책2",
+            authors: ["이건호", "조용환"],
+            thumbnail:
+              "https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1467038",
+          },
+        ]
       }
     })
   },
