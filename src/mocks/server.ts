@@ -1,4 +1,4 @@
-import { BASE_URL, LOGIN, SIGNUP } from "../hooks/urls/url";
+import { BASE_URL, LOGIN, SEARCH_BOOK, SIGNUP } from "../hooks/urls/url";
 import { createServer } from "miragejs";
 
 if (window.server) {
@@ -7,8 +7,8 @@ if (window.server) {
 
 window.server = createServer({
   routes() {
-    this.namespace = "";
-    this.get("/api/books", () => {
+    this.namespace = BASE_URL;
+    this.get(`${SEARCH_BOOK}`, () => {
       return {
         documents: [
           {
@@ -27,7 +27,7 @@ window.server = createServer({
       };
     });
 
-    this.post(`${BASE_URL}${LOGIN}`, (schema, request) => {
+    this.post(`${LOGIN}`, (schema, request) => {
       const { email, password } = JSON.parse(request.requestBody);
       if (email === "123@gmail.com" && password === "123") {
         return {
@@ -41,7 +41,7 @@ window.server = createServer({
         };
       }
     });
-    this.post(`${BASE_URL}${SIGNUP}`, (schema, request) => {
+    this.post(`${SIGNUP}`, (schema, request) => {
       const { id, password, email } = JSON.parse(request.requestBody);
       if (id === "조용환") {
         return {

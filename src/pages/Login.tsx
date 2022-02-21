@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { View, Text, Button, TextInput } from 'react-native'
 import { EmailLoginData } from '../../types/type'
@@ -15,9 +15,16 @@ export default function Login() {
     mutate,
     data: loginResult,
     isSuccess,
-  } = useLoginMutation(email, password)
-
+  } = useLoginMutation()
   const navigation = useNavigation()
+
+  // token이 유효한지 판단하지 못함. 나중에 서버랑 통신 통해 유효한 토큰인지 확인하는 함수 작성이 필요함.
+  useEffect(()=>{
+    AsyncStorage.getItem('AccessToken').then( e => {
+      navigation.navigate("Home")
+    })
+  },[])
+
   const {
     handleSubmit,
     control,
