@@ -1,4 +1,4 @@
-import { BASE_URL, LOGIN, SEARCH_BOOK, SIGNUP } from "../hooks/urls/url";
+import { BASE_URL, LOGIN, MAKE_SCRAPBOOK, SEARCH_BOOK, SIGNUP } from "../hooks/urls/url";
 import { createServer } from "miragejs";
 
 if (window.server) {
@@ -27,6 +27,11 @@ window.server = createServer({
       };
     });
 
+    // post
+    this.post(`${MAKE_SCRAPBOOK}`, (schema, request) => {
+      console.log(request)
+      return { ok: true }
+    });
     this.post(`${LOGIN}`, (schema, request) => {
       const { email, password } = JSON.parse(request.requestBody);
       if (email === "123@gmail.com" && password === "123") {
