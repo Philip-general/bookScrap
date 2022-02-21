@@ -1,16 +1,17 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Button } from "react-native";
 import React from "react";
 import { styles } from "../style";
+import { bookData } from '../../types/type';
 
-type Props = {
-  title: string;
-  authors: [string];
-  thumbnail?: string;
-};
 
-export default function SearchedBook({ title, authors, thumbnail }: Props) {
+export default function SearchedBook(Props: bookData) {
+  const {title, authors, thumbnail} = Props
+  const addScrap = () => {
+    console.log('scrap 추가',title,authors)
+  }
+
   return (
-    <View>
+    <View style={{...styles.container}}>
       <Text>{title}</Text>
       <Text>{authors}</Text>
       {thumbnail ? (
@@ -21,6 +22,7 @@ export default function SearchedBook({ title, authors, thumbnail }: Props) {
           }}
         />
       ) : null}
+      <Button onPress={addScrap} title='+'/>
     </View>
   );
 }

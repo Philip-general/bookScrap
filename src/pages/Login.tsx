@@ -6,6 +6,7 @@ import { EmailLoginData } from '../../types/type'
 import { useLoginMutation } from '../hooks/login'
 import { styles } from '../style'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -39,6 +40,7 @@ export default function Login() {
         // 이제 로컬스토리지에 담겨서 서버로 보내주기만 하면 됩니다.
         // 이런 방식으로 가던지 axios header에 기본값으로 설정할지 의논이 필요할 것 같습니다.
         await AsyncStorage.setItem('AccessToken', loginResult?.AccessToken as string)
+        axios.defaults.headers.common["AccessToken"] = await AsyncStorage.getItem('AccessToken') as string
         navigation.navigate('Home')
       }
     })
