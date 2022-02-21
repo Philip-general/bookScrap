@@ -13,9 +13,8 @@ const addScrapBookMutation = async (Props: bookData): Promise<mutationResult> =>
     },
   })
 
-  const loginResult = data
-  // console.log('로그인결과입니다.', loginResult)
-  return loginResult
+  const mutationResult = data
+  return mutationResult
 }
 
 export const useAddScrapMutation = () => {
