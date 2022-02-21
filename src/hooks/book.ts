@@ -2,17 +2,18 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import config from "../constants/config";
 import { bookData } from "../../types/type";
+import { BASE_URL, SEARCH_BOOK } from './urls/url';
 
 type books = Array<bookData>;
 
 export const getBooks = async (bookName: string): Promise<books> => {
   const { data } = await axios({
     method: "get",
-    // 실제 연결시에는 url https://dapi.kakao.com/v3/search/book?sort=accuracy&page=1&size=5&query=${bookName}`으로 변경 필요
-    url: "/api/books",
-    headers: {
-      Authorization: `KakaoAK ${config.KAKAO_BOOK_SEARCH_API_KEY}`,
-    },
+    baseURL: BASE_URL,
+    url: SEARCH_BOOK,
+    params:{
+      name: bookName
+    }
   });
   console.log("getbooks실행", data); 
 

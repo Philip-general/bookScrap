@@ -33,6 +33,6 @@ export const loginEmail = async ({
   return loginResult
 }
 
-export const useLoginMutation = (email: string, password: string) => {
+export const useLoginMutation = () => {
   return useMutation(loginEmail)
 }
