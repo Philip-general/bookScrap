@@ -22,9 +22,9 @@ export default function Login() {
   // token이 유효한지 판단하지 못함. 나중에 서버랑 통신 통해 유효한 토큰인지 확인하는 함수 작성이 필요함.
   useEffect(()=>{
     AsyncStorage.getItem('AccessToken').then( e => {
-      navigation.navigate("Home")
+      navigation.replace("BookSearch")
     })
-  },[])
+  }, [])
 
   const {
     handleSubmit,
@@ -37,11 +37,9 @@ export default function Login() {
     setPassword(data.password)
     mutate(data,{
       onSuccess:async(loginResult)=>{
-        // 이제 로컬스토리지에 담겨서 서버로 보내주기만 하면 됩니다.
-        // 이런 방식으로 가던지 axios header에 기본값으로 설정할지 의논이 필요할 것 같습니다.
         await AsyncStorage.setItem('AccessToken', loginResult?.AccessToken as string)
         axios.defaults.headers.common["AccessToken"] = await AsyncStorage.getItem('AccessToken') as string
-        navigation.navigate('Home')
+        navigation.replace('BookSearch')
       }
     })
   }

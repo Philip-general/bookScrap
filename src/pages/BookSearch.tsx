@@ -7,7 +7,7 @@ import { useState } from "react";
 import SearchedBook from "../components/SearchedBook";
 import { bookData } from "../../types/type";
 
-export default function Home() {
+export default function BookSearch() {
   const [bookName, setBookName] = useState("");
   const { data: books, isLoading, isError, refetch } = useGetBooks(bookName);
   const {
