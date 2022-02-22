@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Home from "./src/pages/Home";
 import Signup from "./src/pages/Signup";
-import Main from "./src/pages/main"
+import Main from "./src/pages/Main";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { store } from "./src/store/store";
 import { Provider } from "react-redux";
@@ -22,10 +22,6 @@ export default function App() {
             <Stack.Screen name="Main" component={Main} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Signup" component={Signup}/>
-            
-            
-            
-            
             {/* <Stack.Screen name="Signup" component={Signup} /> */}
           </Stack.Navigator>
         </NavigationContainer>

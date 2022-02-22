@@ -11,6 +11,7 @@ export type bookData = {
   title: string;
   authors: [string];
   thumbnail: string;
+  contents:string;
 };
 
 export type signUpInfo ={

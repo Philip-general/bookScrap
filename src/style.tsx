@@ -19,25 +19,34 @@ export const styles = StyleSheet.create({
     flex:1,
   },
   Main_components:{
-    borderWidth:2,
     margin:10,
-    borderColor:"black",
-    backgroundColor:"#F2F5C8",
-    flexDirection:"row",
+    backgroundColor:'#fff',
+    flexDirection:'row',
   },
   Main_bookImg:{
-    width:120,
+    marginLeft:10,
+    marginRight:10,
+    width:100,
     height:160,
+    resizeMode:'contain'
   },
   Main_word:{
-    flex:2,
+    marginTop:5,
+    flex:1,
+  },
+  Main_title:{
+    margin:5,
+  },
+  Main_button:{
+    marginRight:20,
+    textAlign:"right",
   },
   Main_header:{
     flex:1,
     flexDirection:"row",
   },
   Main_medium:{
-    flex:20,
+    flex:19,
   },
   Main_header_left:{
     flex:1,
@@ -50,6 +59,5 @@ export const styles = StyleSheet.create({
   },
   Main:{
     height:"100%",
-    backgroundColor:"#FEF5ED",
   },
 });

@@ -26,13 +26,13 @@ export default function Main(){
             <View style={styles.Main_medium}>
                 {isLoading ? (<View>로딩중입니다</View>):
                 (<View>
-                    {data.documents?.map(({ title, authors, thumbnail }: bookData) => {
+                    {data.documents?.map(({ title, authors, thumbnail,contents }: bookData) => {
                     return (
                         <Myscrapbook
-                        key={++id}
                         authors={authors}
                         thumbnail={thumbnail}
                         title={title}
+                        contents={contents}
                         /> 
                     );
                     })}
