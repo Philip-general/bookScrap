@@ -1,5 +1,5 @@
 
-import { BASE_URL, LOGIN, MAKE_SCRAPBOOK, SEARCH_BOOK, SIGNUP,SCRAPBOOKS } from "../hooks/urls/url";
+import { BASE_URL, LOGIN, MAKE_SCRAPBOOK, SEARCH_BOOK, SIGNUP, SCRAPBOOKS } from "../hooks/urls/url";
 import { createServer } from "miragejs";
 
 if (window.server) {
@@ -59,7 +59,7 @@ window.server = createServer({
         };
       }
     });
-    this.get(`${BASE_URL}${SCRAPBOOKS}`, () => {
+    this.get(`${SCRAPBOOKS}`, () => {
       return{
         documents:[
           {

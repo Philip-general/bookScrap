@@ -22,7 +22,13 @@ export default function Login() {
   // token이 유효한지 판단하지 못함. 나중에 서버랑 통신 통해 유효한 토큰인지 확인하는 함수 작성이 필요함.
   useEffect(()=>{
     AsyncStorage.getItem('AccessToken').then( e => {
-      navigation.replace("BookSearch")
+      if (e==null || e==undefined){
+        console.log(e)
+      }
+      else{
+        navigation.replace("Main")
+      }
+
     })
   }, [])
 
@@ -39,7 +45,7 @@ export default function Login() {
       onSuccess:async(loginResult)=>{
         await AsyncStorage.setItem('AccessToken', loginResult?.AccessToken as string)
         axios.defaults.headers.common["AccessToken"] = await AsyncStorage.getItem('AccessToken') as string
-        navigation.replace('BookSearch')
+        navigation.replace('Main')
       }
     })
   }

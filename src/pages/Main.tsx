@@ -1,6 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
 import { View, Text, Button, TextInput,Alert ,Image} from "react-native";
 import { styles } from "../style";
 import {useScrapBooks} from "../hooks/Main"
@@ -12,9 +11,15 @@ import AsyncStorage from '@react-native-community/async-storage';
 export default function Main(){
     const navigation = useNavigation();
     let Scrap="Scrap"
-    AsyncStorage.getItem("AccessToken",(err,res)=>{
-        //if (res==null) {return navigation.navigate("Login")}
-    });
+    useEffect(()=>{
+        AsyncStorage.getItem("AccessToken").then(e=>{
+            console.log(e)
+            if (e===null || e===undefined){
+                navigation.replace("Login")
+            }
+        })
+    },[])
+    
     //Token을 넘겨주는거로 바꿔야함
     const { data, isLoading, isError, refetch } = useScrapBooks();
     return(

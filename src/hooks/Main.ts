@@ -1,12 +1,13 @@
 import { useQuery } from "react-query";
 import axios from "axios";
 import { ScrapbookData  } from "../../types/type";
-import { BASE_URL, BOOK, SCRAPBOOKS } from "./urls/url";
+import { BASE_URL, SCRAPBOOKS } from "./urls/url";
 type books = Array<ScrapbookData >;
 export const getScrapbook = async()=>{
     const response = await axios({
         method:"get",
-        url:`${BASE_URL}${SCRAPBOOKS}`
+        baseURL: BASE_URL,
+        url:SCRAPBOOKS,
     })
 
     const book : books = response.data;

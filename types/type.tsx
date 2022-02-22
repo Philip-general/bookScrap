@@ -1,4 +1,4 @@
-export type mutationResult {
+export type mutationResult ={
   ok: Boolean;
   error?: string;
 }
@@ -20,6 +20,15 @@ export type ScrapbookData = {
   publisher: string;
   url: string;
   scrapbookId:number,
+};
+
+export type bookData = {
+  title: string;
+  authors: [string];
+  thumbnail: string;
+  contents: string;
+  publisher: string;
+  url: string;
 };
 
 export type signUpInfo ={
