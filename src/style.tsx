@@ -1,6 +1,10 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  search_icon :{
+    height:30,
+    width:30,
+  },
   input: {
     height: 40,
     margin: 12,
@@ -38,8 +42,8 @@ export const styles = StyleSheet.create({
     margin:5,
   },
   Main_button:{
-    marginRight:20,
-    textAlign:"right",
+    flexDirection:"row",
+    justifyContent:"space-around",
   },
   Main_header:{
     flex:1,
@@ -51,11 +55,7 @@ export const styles = StyleSheet.create({
   Main_header_left:{
     flex:1,
     fontSize:24,
-  },
-  Main_header_right :{
-    flex:1,
-    fontSize:22,
-    textAlign:"right",
+    textAlign:'center'
   },
   Main:{
     height:"100%",

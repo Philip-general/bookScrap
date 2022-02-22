@@ -1,23 +1,28 @@
 import { useQuery } from "react-query";
 import axios from "axios";
-import { bookData } from "../../types/type";
-import { BASE_URL, BOOK } from "./urls/url";
-type books = Array<bookData>;
-export const getScrapbook = async(userId:number)=>{
+import { ScrapbookData  } from "../../types/type";
+import { BASE_URL, BOOK, SCRAPBOOKS } from "./urls/url";
+type books = Array<ScrapbookData >;
+export const getScrapbook = async()=>{
     const response = await axios({
         method:"get",
-        url:`${BASE_URL}${userId}${BOOK}`
+        url:`${BASE_URL}${SCRAPBOOKS}`
     })
 
     const book : books = response.data;
     return book
 };
-export const useScrapBooks = (userId:number) => {
+export const useScrapBooks = () => {
     return useQuery<books,any>(
-      ["searchedBooks", userId],
-      () => getScrapbook(userId),
-      {
-        enabled: !!userId,
-      }
+      ["searchedBooks",],
+      () => getScrapbook(),
+      {}
     );
-  };
+};
+
+export const useDeleteScrapBooks = async(scrapbookId:number) => {
+  const reponse = await axios({
+    method:"DELETE",
+    url:`${BASE_URL}${SCRAPBOOKS}/${scrapbookId}`
+  })
+};

@@ -1,8 +1,9 @@
 import { View, Text, Image, Button } from "react-native";
 import React from "react";
 import { styles } from "../style";
-import { bookData } from "../../types/type";
+import { ScrapbookData } from "../../types/type";
 import { useNavigation } from "@react-navigation/native";
+import { useDeleteScrapBooks } from "../hooks/Main";
 
 function textLengthOverCut(txt, len, lastTxt) {
   if (len == "" || len == null) { // 기본값
@@ -16,11 +17,18 @@ function textLengthOverCut(txt, len, lastTxt) {
   }
   return txt;
 }
-export default function Myscrapbook({ title, authors, thumbnail, contents }: bookData) {
+
+export default function Myscrapbook({ title, authors, thumbnail, contents, scrapbookId }: ScrapbookData) {
   const navigation = useNavigation();
   const onDetail =()=>{
-    //navigation.navigate()
+    console.log(scrapbookId)
+    //navigation.navigate(/detail/:scrapbookId)
   }
+  const onDelete =async()=>{
+    console.log(scrapbookId)
+    //const result = await useDeleteScrapBooks(scrapbookId)
+  }
+
   const new_contents = textLengthOverCut(contents,20,"...")
   return (
     <View style={styles.Main_container}>
@@ -46,9 +54,14 @@ export default function Myscrapbook({ title, authors, thumbnail, contents }: boo
           <Text style={styles.Main_title}> 
             {` ● 내용 : ${new_contents}`}
           </Text>
-            <Text style={styles.Main_button}>
-              <Button color="#2c2c2c" title="넘어가기"></Button>
-            </Text>
+            <View style={styles.Main_button}>
+              <Text>
+                <Button color="#2c2c2c" onPress={onDelete} title="삭제하기"></Button>
+              </Text>
+              <Text>
+                <Button color="#2c2c2c" onPress={onDetail} title="넘어가기"></Button>
+              </Text>
+            </View>
             
         </View>
           

@@ -7,11 +7,12 @@ export type bookSearchForm = {
   bookName: string;
 };
 
-export type bookData = {
+export type ScrapbookData = {
   title: string;
   authors: [string];
   thumbnail: string;
   contents:string;
+  scrapbookId:number,
 };
 
 export type signUpInfo ={

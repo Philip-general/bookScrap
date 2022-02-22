@@ -18,7 +18,7 @@ export default function App() {
     <Provider store={store}>
       <QueryClientProvider client={queryClinet}>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator screenOptions = {{ headerShown: false }}>
             <Stack.Screen name="Main" component={Main} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Signup" component={Signup}/>
