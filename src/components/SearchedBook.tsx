@@ -1,16 +1,27 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Button } from "react-native";
 import React from "react";
 import { styles } from "../style";
+import { bookData } from '../../types/type';
+import { useAddScrapMutation } from '../hooks/addScrapBook';
+import { useNavigation } from '@react-navigation/native';
 
-type Props = {
-  title: string;
-  authors: [string];
-  thumbnail?: string;
-};
 
-export default function SearchedBook({ title, authors, thumbnail }: Props) {
+export default function SearchedBook(Props: bookData) {
+  const { mutate } = useAddScrapMutation();
+  const {title, authors, thumbnail} = Props;
+  const navigation = useNavigation();
+  const addScrap = () => {
+    mutate(Props,{
+      onSuccess: (data) => {
+        if(data.ok){
+          navigation.navigate('Main')
+        }
+      }
+    })
+  }
+
   return (
-    <View>
+    <View style={{...styles.container}}>
       <Text>{title}</Text>
       <Text>{authors}</Text>
       {thumbnail ? (
@@ -21,6 +32,7 @@ export default function SearchedBook({ title, authors, thumbnail }: Props) {
           }}
         />
       ) : null}
+      <Button onPress={addScrap} title='+'/>
     </View>
   );
 }

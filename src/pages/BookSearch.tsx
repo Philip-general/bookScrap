@@ -7,7 +7,7 @@ import { useState } from "react";
 import SearchedBook from "../components/SearchedBook";
 import { bookData } from "../../types/type";
 
-export default function Home() {
+export default function BookSearch() {
   const [bookName, setBookName] = useState("");
   const { data: books, isLoading, isError, refetch } = useGetBooks(bookName);
   const {
@@ -38,13 +38,11 @@ export default function Home() {
       />
       <Button title="책 검색하기" onPress={handleSubmit(searchBook)} />
       <View>
-        {books?.map(({ title, authors, thumbnail }: bookData) => {
+        {books?.map((props: bookData) => {
           return (
             <SearchedBook
-              key={++id}
-              authors={authors}
-              thumbnail={thumbnail}
-              title={title}
+              key={ ++id }
+              {...props}
             />
           );
         })}

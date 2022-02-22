@@ -1,3 +1,8 @@
+export type mutationResult {
+  ok: Boolean;
+  error?: string;
+}
+
 export interface EmailLoginData {
   email: string;
   password: string;
@@ -11,6 +16,9 @@ export type bookData = {
   title: string;
   authors: [string];
   thumbnail: string;
+  contents: string;
+  publisher: string;
+  url: string;
 };
 
 export type signUpInfo ={
