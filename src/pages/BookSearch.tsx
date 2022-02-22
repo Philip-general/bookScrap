@@ -10,6 +10,7 @@ import { bookData } from "../../types/type";
 export default function BookSearch() {
   const [bookName, setBookName] = useState("");
   const { data: books, isLoading, isError, refetch } = useGetBooks(bookName);
+  console.log(books)
   const {
     control,
     handleSubmit,
@@ -17,7 +18,6 @@ export default function BookSearch() {
   } = useForm();
   const searchBook = ({ bookName }) => {
     setBookName(bookName);
-    refetch();
   };
 
   let id = 0;

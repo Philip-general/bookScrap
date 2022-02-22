@@ -12,13 +12,14 @@ export type bookSearchForm = {
   bookName: string;
 };
 
-export type bookData = {
+export type ScrapbookData = {
   title: string;
   authors: [string];
   thumbnail: string;
   contents: string;
   publisher: string;
   url: string;
+  scrapbookId:number,
 };
 
 export type signUpInfo ={
