@@ -17,9 +17,10 @@ export type ScrapbookData = {
   authors: [string];
   thumbnail: string;
   contents: string;
-  publisher: string;
-  url: string;
-  scrapbookId:number,
+  scrapbookId:number;
+  countscrap:number;
+  useGroup:boolean;
+  fixpoint:boolean;
 };
 
 export type bookData = {

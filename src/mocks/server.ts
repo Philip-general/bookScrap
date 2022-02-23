@@ -1,5 +1,5 @@
 
-import { BASE_URL, LOGIN, MAKE_SCRAPBOOK, SEARCH_BOOK, SIGNUP, SCRAPBOOKS } from "../hooks/urls/url";
+import { BASE_URL, LOGIN, MAKE_SCRAPBOOK, SEARCH_BOOK, SIGNUP, SCRAPBOOKS,ME } from "../hooks/urls/url";
 import { createServer } from "miragejs";
 
 if (window.server) {
@@ -63,22 +63,33 @@ window.server = createServer({
       return{
         documents:[
           {
-            title: "더미책1",
+            title: "더미책1하하하하하몰라몰라",
             authors: ["김민국"],
             contents:"안녕하세요 더미책1입니다.가나다라마바사아자차카타파하ㅎㅎㅎㅎㅎㅎ",
             thumbnail:
               "https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1467038",
             scrapbookId :1,
+            countscrap:15,
+            useGroup:1,
+            fixpoint:true,
           },
           {
             title: "더미책2",
-            authors: ["이건호", "조용환"],
+            authors: ["이건호", "조용환", "최준", "공자","맹자"],
             contents:"안녕하세요 더미책2입니다.가나다라마바사아자차카타파하ㅎㅎㅎㅎㅎㅎ",
             thumbnail:
               "https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1467038",
             scrapbookId :2,
+            countscrap:23,
+            useGroup:0,
+            fixpoint:false,
           },
         ]
+      }
+    })
+    this.get(`${ME}`,()=>{
+      return{
+        user:1234
       }
     })
   }

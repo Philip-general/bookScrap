@@ -1,9 +1,10 @@
-import { View, Text, Image, Button } from "react-native";
-import React from "react";
+import { View, Text, Image, Button, TouchableOpacity } from "react-native";
+import React,{useState} from "react";
 import { styles } from "../style";
 import { ScrapbookData } from "../../types/type";
 import { useNavigation } from "@react-navigation/native";
 import { useDeleteScrapBooks } from "../hooks/Main";
+import Icon from "react-native-vector-icons/AntDesign";
 
 function textLengthOverCut(txt, len, lastTxt) {
   if (len == "" || len == null) { // 기본값
@@ -18,20 +19,48 @@ function textLengthOverCut(txt, len, lastTxt) {
   return txt;
 }
 
-export default function Myscrapbook({ title, authors, thumbnail, contents, scrapbookId }: ScrapbookData) {
+function customAuthors(list){
+  var result =""
+  if (list.length<=3){
+    for(var i in list){
+      result = result+" "+list[i]
+    }
+  }
+  else{
+    for(var i=0 ; i<3; i++){
+      result = result+" "+list[i]
+      
+    }
+    result = result+" ..."
+  }
+  return result;
+}
+export default function Myscrapbook({ title,authors, thumbnail, scrapbookId,fixpoint, useGroup,countscrap }: ScrapbookData) {
   const navigation = useNavigation();
+  const [render,setRender] =useState(fixpoint)
+  var fixpoint=true
   const onDetail =()=>{
     console.log(scrapbookId)
     //navigation.navigate(/detail/:scrapbookId)
   }
   const onDelete =async()=>{
-    console.log(scrapbookId)
+    console.log("삭제")
+    //console.log(scrapbookId)
     //const result = await useDeleteScrapBooks(scrapbookId)
   }
-
-  const new_contents = textLengthOverCut(contents,20,"...")
+  const onChange =()=>{
+    if(render){
+      setRender(false)
+      
+    }
+    else{
+      setRender(true)
+    }
+  }
+  const new_title=textLengthOverCut(title,9,"...")
+  const new_author= customAuthors(authors)
   return (
-    <View style={styles.Main_container}>
+    <TouchableOpacity style={styles.Main_container} onPress={onDetail}>
       <View style={styles.Main_components}>
         <View>
           {thumbnail ? (
@@ -43,30 +72,27 @@ export default function Myscrapbook({ title, authors, thumbnail, contents, scrap
             />
           ) : null}
         </View>
-          
+        
         <View style={styles.Main_word}>
+          <Text style={styles.Main_Icon}>
+            {render?<Icon name="staro" onPress={onChange} size={25} color="#FFE302"/>:<Icon name="star" onPress={onChange} size={25} color="#FFE302"/> }
+            <Icon name="close" size={25} onPress={onDelete}/>
+          </Text>
           <Text style={styles.Main_title}>
-            {` ● 제목 : ${title}`}
+            {` ● 제목 : ${new_title}   `}
+            {useGroup?(<Text style={styles.Main_box}>{"Group"}</Text>) :null}
+            {`\n`}
+            {`\n`}
+            {` ● 저자 : ${new_author}`}
+            {`\n`}
+            {`\n`}
+            {` ● 스크랩 개수 : ${countscrap}`}
           </Text>
-          <Text style={styles.Main_title}> 
-            {` ● 저자 : ${authors}`}
-          </Text>
-          <Text style={styles.Main_title}> 
-            {` ● 내용 : ${new_contents}`}
-          </Text>
-            <View style={styles.Main_button}>
-              <Text>
-                <Button color="#2c2c2c" onPress={onDelete} title="삭제하기"></Button>
-              </Text>
-              <Text>
-                <Button color="#2c2c2c" onPress={onDetail} title="넘어가기"></Button>
-              </Text>
-            </View>
             
         </View>
           
       </View>
-        
-    </View>
+    </TouchableOpacity>
+
   );
 }

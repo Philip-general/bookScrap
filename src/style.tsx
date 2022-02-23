@@ -1,3 +1,4 @@
+import { black } from "colors";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -40,10 +41,14 @@ export const styles = StyleSheet.create({
   },
   Main_title:{
     margin:5,
+    flex:1, 
   },
-  Main_button:{
-    flexDirection:"row",
-    justifyContent:"space-around",
+  Main_Icon:{
+    textAlign:"right",
+  },
+  Main_box:{
+    borderWidth:1,
+    borderColor:"black",
   },
   Main_header:{
     flex:1,
