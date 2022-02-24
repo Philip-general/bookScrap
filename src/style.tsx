@@ -50,12 +50,8 @@ export const styles = StyleSheet.create({
     borderWidth:1,
     borderColor:"black",
   },
-  Main_header:{
-    flex:1,
-    flexDirection:"row",
-  },
   Main_medium:{
-    flex:19,
+    flex:1,
   },
   Main_header_left:{
     flex:1,
@@ -64,5 +60,6 @@ export const styles = StyleSheet.create({
   },
   Main:{
     height:"100%",
+    flexDirection:"row"
   },
 });

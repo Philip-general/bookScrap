@@ -71,7 +71,7 @@ window.server = createServer({
             scrapbookId :1,
             countscrap:15,
             useGroup:1,
-            fixpoint:true,
+            fixpoint:false,
           },
           {
             title: "더미책2",
@@ -82,7 +82,7 @@ window.server = createServer({
             scrapbookId :2,
             countscrap:23,
             useGroup:0,
-            fixpoint:false,
+            fixpoint:true,
           },
         ]
       }

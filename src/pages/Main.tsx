@@ -22,28 +22,42 @@ export default function Main(){
     const {data:scrapBookData, isLoading:scrapLoding, isError, refetch } = useScrapBooks();
     return(
         <View style={styles.Main}>
-            <View style={styles.Main_header}>
-                <Text style={styles.Main_header_left}>
-                    {Scrap}
-                </Text>
-            </View>
             <View style={styles.Main_medium}>
                 {scrapLoding? (<Loading/>):
                 (<View>
                     {scrapBookData.documents?.map(({ title, authors, thumbnail,contents,scrapbookId,countscrap,useGroup,fixpoint }: ScrapbookData ) => {
-                    return (
-                        <Myscrapbook
-                        key={scrapbookId}
-                        authors={authors}
-                        thumbnail={thumbnail}
-                        title={title}
-                        contents={contents}
-                        scrapbookId={scrapbookId}
-                        countscrap={countscrap}
-                        useGroup={useGroup}
-                        fixpoint={fixpoint}s
-                        /> 
-                    );
+                        if(fixpoint==true){
+                           return (
+                            <Myscrapbook
+                            key={scrapbookId}
+                            authors={authors}
+                            thumbnail={thumbnail}
+                            title={title}
+                            contents={contents}
+                            scrapbookId={scrapbookId}
+                            countscrap={countscrap}
+                            useGroup={useGroup}
+                            fixpoint={fixpoint}
+                            />
+                            );
+                        }
+                    })}
+                    {scrapBookData.documents?.map(({ title, authors, thumbnail,contents,scrapbookId,countscrap,useGroup,fixpoint }: ScrapbookData ) => {
+                        if(fixpoint==false){
+                           return (
+                            <Myscrapbook
+                            key={scrapbookId}
+                            authors={authors}
+                            thumbnail={thumbnail}
+                            title={title}
+                            contents={contents}
+                            scrapbookId={scrapbookId}
+                            countscrap={countscrap}
+                            useGroup={useGroup}
+                            fixpoint={fixpoint}
+                            />
+                            );
+                        }
                     })}
                 </View>)}
             </View>

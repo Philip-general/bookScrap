@@ -1,4 +1,4 @@
-import { View, Text, Image, Button, TouchableOpacity } from "react-native";
+import { View, Text, Image, Button, TouchableOpacity,Alert } from "react-native";
 import React,{useState} from "react";
 import { styles } from "../style";
 import { ScrapbookData } from "../../types/type";
@@ -23,12 +23,17 @@ function customAuthors(list){
   var result =""
   if (list.length<=3){
     for(var i in list){
-      result = result+" "+list[i]
+      if (i+1==list.length){
+        result = result+list[i]
+      }
+      else{
+        result = result+list[i]+", "
+      }
     }
   }
   else{
     for(var i=0 ; i<3; i++){
-      result = result+" "+list[i]
+      result = result + list[i]+", "
       
     }
     result = result+" ..."
@@ -38,20 +43,21 @@ function customAuthors(list){
 export default function Myscrapbook({ title,authors, thumbnail, scrapbookId,fixpoint, useGroup,countscrap }: ScrapbookData) {
   const navigation = useNavigation();
   const [render,setRender] =useState(fixpoint)
-  var fixpoint=true
   const onDetail =()=>{
     console.log(scrapbookId)
     //navigation.navigate(/detail/:scrapbookId)
   }
   const onDelete =async()=>{
     console.log("삭제")
+    Alert.alert('삭제', '삭제하시겠습니까?', [
+      { text: 'OK', onPress: () => console.log("axios보내면 됨")},
+      {text:"No",onPress:()=>console.log("No")}])
     //console.log(scrapbookId)
     //const result = await useDeleteScrapBooks(scrapbookId)
   }
   const onChange =()=>{
     if(render){
       setRender(false)
-      
     }
     else{
       setRender(true)
@@ -75,7 +81,7 @@ export default function Myscrapbook({ title,authors, thumbnail, scrapbookId,fixp
         
         <View style={styles.Main_word}>
           <Text style={styles.Main_Icon}>
-            {render?<Icon name="staro" onPress={onChange} size={25} color="#FFE302"/>:<Icon name="star" onPress={onChange} size={25} color="#FFE302"/> }
+            {render?<Icon name="star" onPress={onChange} size={25} color="#FFE302"/>:<Icon name="staro" onPress={onChange} size={25} color="#FFE302"/> }
             <Icon name="close" size={25} onPress={onDelete}/>
           </Text>
           <Text style={styles.Main_title}>
