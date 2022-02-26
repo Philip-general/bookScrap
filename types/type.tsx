@@ -1,7 +1,7 @@
-export type mutationResult ={
+export type mutationResult = {
   ok: Boolean;
   error?: string;
-}
+};
 
 export interface EmailLoginData {
   email: string;
@@ -19,7 +19,7 @@ export type ScrapbookData = {
   contents: string;
   publisher: string;
   url: string;
-  scrapbookId:number,
+  scrapbookId: number;
 };
 
 export type bookData = {
@@ -31,9 +31,9 @@ export type bookData = {
   url: string;
 };
 
-export type signUpInfo ={
-  id:string,
-  password:string,
-  repassword:string,
-  email:string,
-}
+export type signUpInfo = {
+  id: string;
+  password: string;
+  repassword: string;
+  email: string;
+};
