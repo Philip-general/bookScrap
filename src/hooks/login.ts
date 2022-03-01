@@ -36,12 +36,13 @@ export const loginEmail = async ({
   return loginResult;
 };
 
-const onSilentRefresh = async () => {
-  const { data } = await axios({
+// refresh가 성공 혹은 만료된 상태이면 어떻게 응답이 오는지 정의 필요
+export const onSilentRefresh = async () => {
+  axios({
     method: 'post',
     baseURL: BASE_URL,
     url: REFRESH,
-  });
+  }).then(onLoginSuccess);
 };
 
 const onLoginSuccess = async (response: loginResult) => {
