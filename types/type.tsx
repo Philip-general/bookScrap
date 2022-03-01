@@ -33,7 +33,6 @@ export type bookData = {
 };
 
 export type signUpInfo ={
-  id:string,
   password:string,
   repassword:string,
   email:string,

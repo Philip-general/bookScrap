@@ -22,7 +22,7 @@ export default function Signup(){
         reValidateMode: "onChange",
     });
     const onLogin =()=>{
-        navigation.navigate("Home")
+        navigation.navigate("Login")
     }
     const onSubmit = async(data:signUpInfo) =>{
         try{
@@ -30,8 +30,7 @@ export default function Signup(){
                 onSuccess : (result)=>{
                     result.data.ok?
                     Alert.alert('회원가입', '회원가입을 축하드립니다.', [
-                    { text: 'OK', onPress: () => console.log('OK Pressed')}
-                    /*navigation.navigate("login페이지",{data})*/
+                    { text: 'OK', onPress: () => navigation.navigate("Login",{data})}
                 ]):
                     Alert.alert('죄송합니다', '동일한 id가 존재합니다.', [
                     { text: 'OK', onPress: () => console.log('OK Pressed')}])
@@ -43,14 +42,18 @@ export default function Signup(){
     return(
         <View>
             <View>
-                <Text>ID</Text>
+                <Text>Email</Text>
                 <Controller
-                    name="id"
+                    name="email"
                     control={control}
-                    rules={{required:"ID가 필요합니다."}}
+                    rules={{
+                        pattern: {
+                            value : /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
+                            message : "email양식이 이상합니다"},
+                        required: "email이 필요합니다" }}
                     render={({field:{onChange,onBlur,value}}) =>(
                         <TextInput
-                            placeholder="ID를 입력하세요"
+                            placeholder="Email을 입력하시오"
                             style={styles.input}
                             onBlur = {onBlur}
                             onChangeText={(value) => onChange(value)}
@@ -58,7 +61,7 @@ export default function Signup(){
                             defaultValue=""
                             />
                     )}/>
-                    {errors.id ?(<Text>{errors.id.message}</Text>):null}
+                    {errors.email && (<Text>{errors.email.message}</Text>)}
             </View>
             <View>
                 <Text>Password</Text>
@@ -110,31 +113,9 @@ export default function Signup(){
                    <Button title="보기" onPress={onSee}/>
             </View>
             <View>
-                <Text>Email</Text>
-                <Controller
-                    name="email"
-                    control={control}
-                    rules={{
-                        pattern: {
-                            value : /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
-                            message : "email양식이 이상합니다"},
-                        required: "email이 필요합니다" }}
-                    render={({field:{onChange,onBlur,value}}) =>(
-                        <TextInput
-                            placeholder="Email을 입력하시오"
-                            style={styles.input}
-                            onBlur = {onBlur}
-                            onChangeText={(value) => onChange(value)}
-                            value={value}
-                            defaultValue=""
-                            />
-                    )}/>
-                    {errors.email && (<Text>{errors.email.message}</Text>)}
-            </View>
-            <View>
                 <Button title="회원가입" onPress={handleSubmit(onSubmit)}/>  
             </View>
                 <Button title="로그인하기" onPress={onLogin}></Button>
-        </View>
+        </View> 
     )
 }

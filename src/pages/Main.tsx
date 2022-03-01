@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { View, Text, Button, TextInput,Alert ,Image} from "react-native";
 import { styles } from "../style";
-import {useScrapBooks} from "../hooks/Main"
+import {useScrapBooks} from "../hooks/main"
 import { ScrapbookData } from "../../types/type";
 import Myscrapbook from "../components/Myscrapbook";
 import { useGetMe } from "../hooks/user";

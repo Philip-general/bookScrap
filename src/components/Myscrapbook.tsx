@@ -3,7 +3,7 @@ import React,{useState} from "react";
 import { styles } from "../style";
 import { ScrapbookData } from "../../types/type";
 import { useNavigation } from "@react-navigation/native";
-import { useDeleteScrapBooks } from "../hooks/Main";
+import { useDeleteScrapBooks } from "../hooks/main";
 import Icon from "react-native-vector-icons/AntDesign";
 
 function textLengthOverCut(txt, len, lastTxt) {
@@ -58,6 +58,7 @@ export default function Myscrapbook({ title,authors, thumbnail, scrapbookId,fixp
   const onChange =()=>{
     if(render){
       setRender(false)
+      
     }
     else{
       setRender(true)

@@ -21,9 +21,17 @@ export const useScrapBooks = () => {
     );
 };
 
-export const useDeleteScrapBooks = async(scrapbookId:number) => {
+export const deleteScrapBooks = async(scrapbookId:number) => {
   const reponse = await axios({
     method:"DELETE",
     url:`${BASE_URL}${SCRAPBOOKS}/${scrapbookId}`
   })
 };
+
+export const updateScrapBooks = async(scrapbookId:number)=>{
+  const response = await axios({
+    method:"PATCH",
+    baseURL: BASE_URL,
+    url:SCRAPBOOKS+`/${scrapbookId}`
+  })
+}
