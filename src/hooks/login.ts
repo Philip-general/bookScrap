@@ -1,24 +1,25 @@
-import axios from 'axios'
-import { useMutation } from 'react-query'
-import { BASE_URL, LOGIN } from './urls/url'
+import AsyncStorage from '@react-native-community/async-storage';
+import axios from 'axios';
+import { useMutation } from 'react-query';
+import { BASE_URL, LOGIN, REFRESH } from './urls/url';
 
 type loginResult = {
-  ok: boolean
-  AccessToken?: string
-  error?: string
-}
+  ok: boolean;
+  accessToken?: string;
+  exp?: string;
+  error?: string;
+};
 
 type loginInfo = {
-  email: string
-  password: string
-}
+  email: string;
+  password: string;
+};
 
 export const loginEmail = async ({
   email,
   password,
 }: loginInfo): Promise<loginResult> => {
-  // console.log('loginEmail 실행')
-  const { data } = await axios({
+  const { data: loginResult }: { data: loginResult } = await axios({
     method: 'post',
     baseURL: BASE_URL,
     url: LOGIN,
@@ -26,13 +27,40 @@ export const loginEmail = async ({
       email,
       password,
     },
-  })
+  });
+  if (loginResult.ok) {
+    console.log('onLoginSuccess 실행');
+    onLoginSuccess(loginResult);
+  }
 
-  const loginResult = data
-  // console.log('로그인결과입니다.', loginResult)
-  return loginResult
-}
+  return loginResult;
+};
+
+const onSilentRefresh = async () => {
+  const { data } = await axios({
+    method: 'post',
+    baseURL: BASE_URL,
+    url: REFRESH,
+  });
+};
+
+const onLoginSuccess = async (response: loginResult) => {
+  const { accessToken, exp } = response;
+
+  // accessToken 설정
+  axios.defaults.headers.common['accessToken'] = `${accessToken}`;
+
+  // accessToken 만료하기 1분 전에 로그인 연장
+  const JWT_EXPIRY_TIME = Number(exp) * 60 * 1000;
+  const ONE_MINUTE = 1 * 60 * 1000;
+  const timer = setTimeout(onSilentRefresh, JWT_EXPIRY_TIME - ONE_MINUTE);
+
+  // 설정된 timer는 JWT만료시간이 되면 clearTimeout으로 해제된다.
+  setTimeout(() => {
+    clearTimeout(timer);
+  }, JWT_EXPIRY_TIME);
+};
 
 export const useLoginMutation = () => {
-  return useMutation(loginEmail)
-}
+  return useMutation(loginEmail);
+};
