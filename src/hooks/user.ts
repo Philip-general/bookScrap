@@ -6,7 +6,7 @@ export const getMe = async()=>{
     const response = await axios({
         method:"get",
         baseURL:BASE_URL,
-        url:`${ME}`
+        url:ME,
     })
 
     return response.data;

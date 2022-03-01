@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import axios from "axios";
 import { ScrapbookData  } from "../../types/type";
-import { BASE_URL, SCRAPBOOKS } from "./urls/url";
+import { BASE_URL, MAKE_SCRAPBOOK, SCRAPBOOKS } from "./urls/url";
 type books = Array<ScrapbookData >;
 export const getScrapbook = async()=>{
     const response = await axios({
@@ -24,7 +24,8 @@ export const useScrapBooks = () => {
 export const deleteScrapBooks = async(scrapbookId:number) => {
   const reponse = await axios({
     method:"DELETE",
-    url:`${BASE_URL}${SCRAPBOOKS}/${scrapbookId}`
+    baseURL:BASE_URL,
+    url: MAKE_SCRAPBOOK+`/${scrapbookId}`
   })
 };
 
@@ -32,6 +33,6 @@ export const updateScrapBooks = async(scrapbookId:number)=>{
   const response = await axios({
     method:"PATCH",
     baseURL: BASE_URL,
-    url:SCRAPBOOKS+`/${scrapbookId}`
+    url:MAKE_SCRAPBOOK+`/${scrapbookId}`
   })
 }
