@@ -8,7 +8,7 @@ export const getMe = async()=>{
         baseURL:BASE_URL,
         url:ME,
     })
-
+    console.log(response)
     return response.data;
 }
 

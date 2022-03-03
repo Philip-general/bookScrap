@@ -51,7 +51,7 @@ export default function Myscrapbook({ title,authors, thumbnail, scrapbookId,fixp
     console.log("삭제")
     Alert.alert('삭제', '삭제하시겠습니까?', [
       { text: 'OK', onPress: () => console.log("axios보내면 됨")},
-      {text:"No",onPress:()=>console.log("No")}])
+      { text:"No",onPress:()=>console.log("No")}])
     //console.log(scrapbookId)
     //const result = await useDeleteScrapBooks(scrapbookId)
   }

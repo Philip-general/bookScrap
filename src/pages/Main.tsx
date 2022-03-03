@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
-import { View, Text, Button, TextInput,Alert ,Image} from "react-native";
+import React from "react";
+import { View } from "react-native";
 import { styles } from "../style";
 import {useScrapBooks} from "../hooks/main"
 import { ScrapbookData } from "../../types/type";
@@ -11,7 +11,6 @@ import Loading from "../components/Loading";
 
 export default function Main(){
     const navigation = useNavigation();
-    let Scrap="Scrap"
     const {data:userData,isSuccess } = useGetMe();
     if(isSuccess){
         if(userData.user==null ||userData.user==undefined){

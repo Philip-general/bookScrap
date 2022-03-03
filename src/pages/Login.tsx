@@ -24,9 +24,10 @@ export default function Login() {
   const onLogin = async (data: EmailLoginData) => {
     mutate(data, {
       onSuccess: async loginResult => {
+        console.log(loginResult.ok)
         if (loginResult.ok === true) {
           axios.defaults.headers.common['AccessToken'] =
-            loginResult.AccessToken as string;
+            loginResult.accessToken as string;
         }
         navigation.replace('Main');
       },

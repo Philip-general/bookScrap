@@ -27,13 +27,8 @@ export default function Signup(){
     const onSubmit = async(data:signUpInfo) =>{
         try{
             mutate(data,{
-                onSuccess : (result)=>{
-                    result.data.ok?
-                    Alert.alert('회원가입', '회원가입을 축하드립니다.', [
-                    { text: 'OK', onPress: () => navigation.navigate("Login",{data})}
-                ]):
-                    Alert.alert('죄송합니다', '동일한 id가 존재합니다.', [
-                    { text: 'OK', onPress: () => console.log('OK Pressed')}])
+                onSuccess : (result) => {
+                    console.log(data,result)
                 }})
         }catch(e){
             console.log(e)

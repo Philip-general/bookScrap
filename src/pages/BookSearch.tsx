@@ -10,7 +10,6 @@ import { bookData } from "../../types/type";
 export default function BookSearch() {
   const [bookName, setBookName] = useState("");
   const { data: books, isLoading, isError, refetch } = useGetBooks(bookName);
-  console.log(books)
   const {
     control,
     handleSubmit,
@@ -39,6 +38,7 @@ export default function BookSearch() {
       <Button title="책 검색하기" onPress={handleSubmit(searchBook)} />
       <View>
         {books?.map((props: bookData) => {
+          console.log(props)
           return (
             <SearchedBook
               key={ ++id }
