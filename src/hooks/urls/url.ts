@@ -1,4 +1,3 @@
-
 export const REFRESH = '/auth/refresh';
 export const BASE_URL = 'http://3.37.129.186/apis/v1'
 export const LOGIN = '/auth/login'

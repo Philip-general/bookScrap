@@ -12,7 +12,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { store } from "./src/store/store";
 import { Provider } from "react-redux";
 import "./src/mocks/server";
-import React from "react";
 import{ MainRight} from "./src/components/header"
 import { styles } from "./src/style";
 
@@ -40,7 +39,7 @@ export default function App() {
                 fontWeight: 'bold',
               }}}/>  
             <Stack.Screen name="BookSearch" component={BookSearch} />
-          </Stack.Navigator>
+          </Stack.Navigator> 
         </NavigationContainer>
       </QueryClientProvider>
     </Provider>

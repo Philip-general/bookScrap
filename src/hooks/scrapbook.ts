@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { ScrapbookData  } from "../../types/type";
 import { BASE_URL, MAKE_SCRAPBOOK, SCRAPBOOKS } from "./urls/url";
-type books = Array<ScrapbookData >;
+type books = Array<ScrapbookData>;
 export const getScrapbook = async()=>{
     const response = await axios({
         method:"get",
