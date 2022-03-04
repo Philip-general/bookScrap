@@ -5,7 +5,8 @@ import {BASE_URL,SIGNUP} from "../hooks/urls/url"
 export const postSignup = async(data:signUpInfo) =>{
   const response = await axios({
     method:"post",
-    url:`${BASE_URL}${SIGNUP}`,
+    baseURL: BASE_URL,
+    url :SIGNUP,
     data
   })
   return response
