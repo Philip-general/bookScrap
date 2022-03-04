@@ -1,6 +1,10 @@
+import { black } from "colors";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  Main_header_right:{
+    marginRight:10
+  },
   search_icon :{
     height:30,
     width:30,
@@ -40,17 +44,17 @@ export const styles = StyleSheet.create({
   },
   Main_title:{
     margin:5,
+    flex:1, 
   },
-  Main_button:{
-    flexDirection:"row",
-    justifyContent:"space-around",
+  Main_Icon:{
+    textAlign:"right",
   },
-  Main_header:{
-    flex:1,
-    flexDirection:"row",
+  Main_box:{
+    borderWidth:1,
+    borderColor:"black",
   },
   Main_medium:{
-    flex:19,
+    flex:1,
   },
   Main_header_left:{
     flex:1,
@@ -59,5 +63,6 @@ export const styles = StyleSheet.create({
   },
   Main:{
     height:"100%",
+    flexDirection:"row"
   },
 });

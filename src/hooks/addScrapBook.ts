@@ -12,7 +12,6 @@ const addScrapBookMutation = async (Props: bookData): Promise<mutationResult> =>
       ...Props
     },
   })
-
   const mutationResult = data
   return mutationResult
 }

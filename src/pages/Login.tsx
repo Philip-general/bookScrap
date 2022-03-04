@@ -7,10 +7,11 @@ import { useLoginMutation } from '../hooks/login';
 import { styles } from '../style';
 import { useGetMe } from '../hooks/user';
 
+
 export default function Login() {
   const [seePassword, setSeePassword] = useState(false);
   const { mutate, data: loginResult, isSuccess } = useLoginMutation();
-  // const { data: loginUser } = useGetMe();
+
   const navigation = useNavigation();
 
   // token이 유효한지 판단하지 못함. 나중에 서버랑 통신 통해 유효한 토큰인지 확인하는 함수 작성이 필요함.
@@ -95,3 +96,4 @@ export default function Login() {
     </View>
   );
 }
+
