@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 import "./src/mocks/server";
 import React from "react";
 import{ MainRight} from "./src/components/header"
+import { styles } from "./src/style";
 const Stack = createNativeStackNavigator();
 const queryClinet = new QueryClient();
 
@@ -27,7 +28,7 @@ export default function App() {
             <Stack.Screen name="Main" component={Main}
               options={
               {title:"Scrap",headerTitleAlign: 'center',
-              headerRight:()=><MainRight/>,
+              headerRight:() => <MainRight styles={{marginRight:10}}/>,
               headerTitleStyle: {
                 fontWeight: 'bold',
               }}}/>  

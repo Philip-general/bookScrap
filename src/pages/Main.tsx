@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View } from "react-native";
 import { styles } from "../style";
-import {useScrapBooks} from "../hooks/main"
+import {useGetScrapBooks} from "../hooks/scrapbook"
 import { ScrapbookData } from "../../types/type";
 import Myscrapbook from "../components/Myscrapbook";
 import { useGetMe } from "../hooks/user";
@@ -14,11 +14,11 @@ export default function Main(){
     const {data:userData,isSuccess } = useGetMe();
     if(isSuccess){
         if(userData.user==null ||userData.user==undefined){
-            navigation.replace("Signup")
+            navigation.replace("Login")
         }
     }
     
-    const {data:scrapBookData, isLoading:scrapLoding, isError, refetch } = useScrapBooks();
+    const {data:scrapBookData, isLoading:scrapLoding, isError, refetch } = useGetScrapBooks();
     return(
         <View style={styles.Main}>
             <View style={styles.Main_medium}>

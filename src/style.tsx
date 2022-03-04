@@ -2,6 +2,9 @@ import { black } from "colors";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  Main_header_right:{
+    marginRight:10
+  },
   search_icon :{
     height:30,
     width:30,

@@ -13,7 +13,7 @@ export const getScrapbook = async()=>{
     const book : books = response.data;
     return book
 };
-export const useScrapBooks = () => {
+export const useGetScrapBooks = () => {
     return useQuery<books,any>(
       ["searchedBooks",],
       () => getScrapbook(),

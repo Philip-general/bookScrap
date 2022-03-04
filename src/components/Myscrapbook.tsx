@@ -3,7 +3,7 @@ import React,{useState} from "react";
 import { styles } from "../style";
 import { ScrapbookData } from "../../types/type";
 import { useNavigation } from "@react-navigation/native";
-import { useDeleteScrapBooks } from "../hooks/main";
+import { useDeleteScrapBooks } from "../hooks/scrapbook";
 import Icon from "react-native-vector-icons/AntDesign";
 
 function textLengthOverCut(txt, len, lastTxt) {
