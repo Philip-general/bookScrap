@@ -1,7 +1,7 @@
-export type mutationResult ={
+export type mutationResult = {
   ok: Boolean;
   error?: string;
-}
+};
 
 export interface EmailLoginData {
   email: string;

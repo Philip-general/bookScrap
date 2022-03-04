@@ -8,6 +8,9 @@ import Myscrapbook from "../components/Myscrapbook";
 import { useGetMe } from "../hooks/user";
 import Loading from "../components/Loading";
 
+export default function Main() {
+  const navigation = useNavigation();
+  let Scrap = 'Scrap';
 
 export default function Main(){
     const navigation = useNavigation();

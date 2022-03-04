@@ -5,15 +5,21 @@ import { View, Text, Button, TextInput } from 'react-native';
 import { EmailLoginData } from '../../types/type';
 import { useLoginMutation } from '../hooks/login';
 import { styles } from '../style';
-import axios from 'axios';
+import { useGetMe } from '../hooks/user';
+
 
 export default function Login() {
   const [seePassword, setSeePassword] = useState(false);
   const { mutate, data: loginResult, isSuccess } = useLoginMutation();
+
   const navigation = useNavigation();
 
   // token이 유효한지 판단하지 못함. 나중에 서버랑 통신 통해 유효한 토큰인지 확인하는 함수 작성이 필요함.
   // me 함수를 불러오는 useEffect가 필요함
+  const { data, isLoading } = useGetMe();
+  if (!isLoading && data.id) {
+    navigation.replace('Main');
+  }
 
   const {
     handleSubmit,
@@ -24,11 +30,6 @@ export default function Login() {
   const onLogin = async (data: EmailLoginData) => {
     mutate(data, {
       onSuccess: async loginResult => {
-        console.log(loginResult.ok)
-        if (loginResult.ok === true) {
-          axios.defaults.headers.common['AccessToken'] =
-            loginResult.accessToken as string;
-        }
         navigation.replace('Main');
       },
     });
@@ -95,3 +96,4 @@ export default function Login() {
     </View>
   );
 }
+
