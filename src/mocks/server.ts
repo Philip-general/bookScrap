@@ -8,6 +8,7 @@
 // window.server = createServer({
 //   routes() {
 //     this.namespace = BASE_URL;
+
 //     this.get(`${SEARCH_BOOK}`, () => {
 //       return {
 //         documents: [
