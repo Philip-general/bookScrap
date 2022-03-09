@@ -19,6 +19,7 @@ export default function Auth({ children }) {
       );
     } else {
       navigation.replace('Login');
+      return null;
     }
   }
 }
