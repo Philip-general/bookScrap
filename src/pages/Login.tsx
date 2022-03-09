@@ -1,26 +1,18 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { View, Text, Button, TextInput } from 'react-native';
+import { View, Text, Button, TextInput, Alert } from 'react-native';
 import { EmailLoginData } from '../../types/type';
 import { useLoginMutation } from '../hooks/login';
 import { styles } from '../style';
 import { useGetMe } from '../hooks/user';
-
+import Auth from '../components/auth/Auth';
 
 export default function Login() {
   const [seePassword, setSeePassword] = useState(false);
   const { mutate, data: loginResult, isSuccess } = useLoginMutation();
 
   const navigation = useNavigation();
-
-  // token이 유효한지 판단하지 못함. 나중에 서버랑 통신 통해 유효한 토큰인지 확인하는 함수 작성이 필요함.
-  // me 함수를 불러오는 useEffect가 필요함
-  const { data, isLoading } = useGetMe();
-  if (!isLoading && data.id) {
-    navigation.replace('Main');
-  }
-
   const {
     handleSubmit,
     control,
@@ -30,7 +22,11 @@ export default function Login() {
   const onLogin = async (data: EmailLoginData) => {
     mutate(data, {
       onSuccess: async loginResult => {
-        navigation.replace('Main');
+        if (loginResult.ok) {
+          navigation.replace('Main');
+        } else {
+          Alert.alert('로그인 실패', loginResult.error);
+        }
       },
     });
   };
@@ -96,4 +92,3 @@ export default function Login() {
     </View>
   );
 }
-
