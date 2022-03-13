@@ -14,7 +14,7 @@ import { Provider } from "react-redux";
 import "./src/mocks/server";
 import{ MainRight} from "./src/components/header"
 import { styles } from "./src/style";
-
+import Detail from "./src/pages/Detail"
 const Stack = createNativeStackNavigator();
 const queryClinet = new QueryClient();
 

@@ -16,10 +16,6 @@ export default function Login() {
 
   // token이 유효한지 판단하지 못함. 나중에 서버랑 통신 통해 유효한 토큰인지 확인하는 함수 작성이 필요함.
   // me 함수를 불러오는 useEffect가 필요함
-  const { data, isLoading } = useGetMe();
-  if (!isLoading && data.id) {
-    navigation.replace('Main');
-  }
 
   const {
     handleSubmit,
@@ -30,6 +26,7 @@ export default function Login() {
   const onLogin = async (data: EmailLoginData) => {
     mutate(data, {
       onSuccess: async loginResult => {
+
         navigation.replace('Main');
       },
     });

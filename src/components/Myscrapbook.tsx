@@ -3,7 +3,7 @@ import React,{useState} from "react";
 import { styles } from "../style";
 import { ScrapbookData } from "../../types/type";
 import { useNavigation } from "@react-navigation/native";
-import { useDeleteScrapBooks } from "../hooks/scrapbook";
+import { deleteStarScrapBooks, getStarScrapBooks,deleteScrapBooks } from "../hooks/scrapbook";
 import Icon from "react-native-vector-icons/AntDesign";
 
 function textLengthOverCut(txt, len, lastTxt) {
@@ -19,62 +19,42 @@ function textLengthOverCut(txt, len, lastTxt) {
   return txt;
 }
 
-function customAuthors(list){
-  var result =""
-  if (list.length<=3){
-    for(var i in list){
-      if (i+1==list.length){
-        result = result+list[i]
-      }
-      else{
-        result = result+list[i]+", "
-      }
-    }
-  }
-  else{
-    for(var i=0 ; i<3; i++){
-      result = result + list[i]+", "
-      
-    }
-    result = result+" ..."
-  }
-  return result;
-}
-export default function Myscrapbook({ title,authors, thumbnail, scrapbookId,fixpoint, useGroup,countscrap }: ScrapbookData) {
+
+export default function Myscrapbook({ book,star,countScraps }: ScrapbookData) {
   const navigation = useNavigation();
-  const [render,setRender] =useState(fixpoint)
+  const [render,setRender] =useState(star)
   const onDetail =()=>{
-    console.log(scrapbookId)
+    console.log(book.id)
     //navigation.navigate(/detail/:scrapbookId)
   }
   const onDelete =async()=>{
     console.log("삭제")
-    Alert.alert('삭제', '삭제하시겠습니까?', [
-      { text: 'OK', onPress: () => console.log("axios보내면 됨")},
-      { text:"No",onPress:()=>console.log("No")}])
-    //console.log(scrapbookId)
-    //const result = await useDeleteScrapBooks(scrapbookId)
+    const result = await deleteScrapBooks(book.id)
+    navigation.replace("Main")
   }
-  const onChange =()=>{
+  const onChange =async()=>{
     if(render){
       setRender(false)
-      
+      const result = await deleteStarScrapBooks(book.id)
+      navigation.replace("Main")
     }
     else{
       setRender(true)
+      const result = await getStarScrapBooks(book.id)
+      navigation.replace("Main")
     }
   }
-  const new_title=textLengthOverCut(title,9,"...")
-  const new_author= customAuthors(authors)
+  const new_title=textLengthOverCut(book.title,9,"...")
+  const new_author= textLengthOverCut(book.authors,9,"...")
   return (
     <TouchableOpacity style={styles.Main_container} onPress={onDetail}>
       <View style={styles.Main_components}>
         <View>
-          {thumbnail ? (
+          {book.thumbnail ? (
             <Image
             style={styles.Main_bookImg}
               source={{
-                uri: thumbnail,
+                uri: book.thumbnail,
               }}  
             />
           ) : null}
@@ -82,18 +62,18 @@ export default function Myscrapbook({ title,authors, thumbnail, scrapbookId,fixp
         
         <View style={styles.Main_word}>
           <Text style={styles.Main_Icon}>
-            {render?<Icon name="star" onPress={onChange} size={25} color="#FFE302"/>:<Icon name="staro" onPress={onChange} size={25} color="#FFE302"/> }
+            {star?<Icon name="star" onPress={onChange} size={25} color="#FFE302"/>:<Icon name="staro" onPress={onChange} size={25} color="#FFE302"/> }
             <Icon name="close" size={25} onPress={onDelete}/>
           </Text>
           <Text style={styles.Main_title}>
             {` ● 제목 : ${new_title}   `}
-            {useGroup?(<Text style={styles.Main_box}>{"Group"}</Text>) :null}
+            {/*useGroup?(<Text style={styles.Main_box}>{"Group"}</Text>) :null*/}
             {`\n`}
             {`\n`}
-            {` ● 저자 : ${new_author}`}
+            {` ● 저자 : ${book.authors}`}
             {`\n`}
             {`\n`}
-            {` ● 스크랩 개수 : ${countscrap}`}
+            {` ● 스크랩 개수 : ${countScraps}`}
           </Text>
             
         </View>

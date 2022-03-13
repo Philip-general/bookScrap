@@ -4,17 +4,18 @@ import { styles } from "../style";
 import { bookData } from '../../types/type';
 import { useAddScrapMutation } from '../hooks/addScrapBook';
 import { useNavigation } from '@react-navigation/native';
-
+import { CommonActions } from '@react-navigation/native';
 
 export default function SearchedBook(Props: bookData) {
+  console.log(Props)
   const { mutate } = useAddScrapMutation();
   const {title, authors, thumbnail} = Props;
   const navigation = useNavigation();
   const addScrap = () => {
-    mutate(Props,{
+    mutate( Props ,{
       onSuccess: (data) => {
         if(data.ok){
-          navigation.navigate('Main')
+          navigation.replace("Main"); 
         }
       }
     })
