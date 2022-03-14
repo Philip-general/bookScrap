@@ -1,11 +1,12 @@
-import { Text, View, Button, TextInput, Image, ScrollView } from "react-native";
-import { styles } from "../style";
-import Auth from "../components/auth/Auth";
-import { Controller, useForm } from "react-hook-form";
-import { useGetBooks } from "../hooks/book";
-import { useState } from "react";
-import SearchedBook from "../components/SearchedBook";
-import { bookData } from "../../types/type";
+import { Text, View, Button, TextInput, Image, ScrollView } from 'react-native';
+import { styles } from '../style';
+
+import { Controller, useForm } from 'react-hook-form';
+import { useGetBooks } from '../hooks/book';
+import { useState } from 'react';
+import SearchedBook from '../components/SearchedBook';
+import { bookData } from '../../types/type';
+import Auth from '../components/auth/Auth';
 
 export default function BookSearch() {
   const [bookName, setBookName] = useState("");
@@ -30,7 +31,7 @@ export default function BookSearch() {
             <TextInput
               placeholder="책 제목을 입력해 주세요."
               style={styles.input}
-              onChangeText={(value) => onChange(value)}
+              onChangeText={value => onChange(value)}
               value={value}
               defaultValue=""
             />
@@ -39,12 +40,8 @@ export default function BookSearch() {
         <Button title="책 검색하기" onPress={handleSubmit(searchBook)} />
         <View>
           {books?.map((props: bookData) => {
-            return (
-              <SearchedBook
-                key={ ++id }
-                {...props}
-              />
-            );
+            console.log(props);
+            return <SearchedBook key={++id} {...props} />;
           })}
         </View>
       </View>

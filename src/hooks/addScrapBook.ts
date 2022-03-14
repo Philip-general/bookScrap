@@ -22,7 +22,6 @@ const addScrapBookMutation = async (
     },
   });
   const mutationResult = data;
-  console.log(data)
   return mutationResult;
 };
 

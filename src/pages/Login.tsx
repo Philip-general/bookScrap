@@ -14,9 +14,6 @@ export default function Login() {
 
   const navigation = useNavigation();
 
-  // token이 유효한지 판단하지 못함. 나중에 서버랑 통신 통해 유효한 토큰인지 확인하는 함수 작성이 필요함.
-  // me 함수를 불러오는 useEffect가 필요함
-
   const {
     handleSubmit,
     control,
@@ -26,8 +23,11 @@ export default function Login() {
   const onLogin = async (data: EmailLoginData) => {
     mutate(data, {
       onSuccess: async loginResult => {
-
+      if (loginResult.ok) {
         navigation.replace('Main');
+      } else {
+        Alert.alert('로그인 실패', loginResult.error);
+      }
       },
     });
   };
