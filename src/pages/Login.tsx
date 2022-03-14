@@ -13,7 +13,6 @@ export default function Login() {
   const { mutate, data: loginResult, isSuccess } = useLoginMutation();
 
   const navigation = useNavigation();
-
   const {
     handleSubmit,
     control,
@@ -23,11 +22,11 @@ export default function Login() {
   const onLogin = async (data: EmailLoginData) => {
     mutate(data, {
       onSuccess: async loginResult => {
-      if (loginResult.ok) {
-        navigation.replace('Main');
-      } else {
-        Alert.alert('로그인 실패', loginResult.error);
-      }
+        if (loginResult.ok) {
+          navigation.replace('Main');
+        } else {
+          Alert.alert('로그인 실패', loginResult.error);
+        }
       },
     });
   };
