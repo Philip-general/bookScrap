@@ -25,27 +25,30 @@ export default function Myscrapbook({ book,star,countScraps }: ScrapbookData) {
   const [render,setRender] =useState(star)
   const onDetail =()=>{
     console.log(book.id)
-    //navigation.navigate(/detail/:scrapbookId)
+    navigation.navigate(`Detail`,{ book:book,countScraps:countScraps})
   }
+
+  // 삭제
   const onDelete =async()=>{
-    console.log("삭제")
-    const result = await deleteScrapBooks(book.id)
-    navigation.replace("Main")
+  //   console.log("삭제")
+  //   const result = await deleteScrapBooks(book.id)
+  //   navigation.replace("Main")
   }
+  
+  // 별 
   const onChange =async()=>{
-    if(render){
-      setRender(false)
-      const result = await deleteStarScrapBooks(book.id)
-      navigation.replace("Main")
-    }
-    else{
-      setRender(true)
-      const result = await getStarScrapBooks(book.id)
-      navigation.replace("Main")
-    }
+  //   if(render){
+  //     setRender(false)
+  //     const result = await deleteStarScrapBooks(book.id)
+  //     navigation.replace("Main")
+  //   }
+  //   else{
+  //     setRender(true)
+  //     const result = await getStarScrapBooks(book.id)
+  //     navigation.replace("Main")
+  //   }
   }
   const new_title=textLengthOverCut(book.title,9,"...")
-  const new_author= textLengthOverCut(book.authors,9,"...")
   return (
     <TouchableOpacity style={styles.Main_container} onPress={onDetail}>
       <View style={styles.Main_components}>

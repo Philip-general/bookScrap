@@ -5,12 +5,9 @@ import { styles } from "../style";
 import {useGetScrapBooks} from "../hooks/scrapbook"
 import { ScrapbookData } from "../../types/type";
 import Myscrapbook from "../components/Myscrapbook";
-import { useGetMe } from "../hooks/user";
-
-
-
 import Loading from "../components/Loading";
 import Auth from "../components/auth/Auth";
+import axios from "axios"
 export default function Main(){
     const navigation = useNavigation();
     // const {data:userData,isSuccess } = useGetMe();
@@ -19,6 +16,9 @@ export default function Main(){
     //         navigation.replace("Login")
     //     }
     // }
+    //const ACCESS_TOKEN = 'accessToken';
+
+    //console.log(axios.defaults.headers.common[ACCESS_TOKEN])
     useEffect(()=>{
     },[])
     const {data:scrapBookData, isLoading:scrapLoding, isError, refetch } = useGetScrapBooks();

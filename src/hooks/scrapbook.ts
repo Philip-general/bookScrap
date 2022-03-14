@@ -3,8 +3,8 @@ import axios from "axios";
 import { ScrapbookData  } from "../../types/type";
 import { BASE_URL, MAKE_SCRAPBOOK, SCRAPBOOKS, STAR } from "./urls/url";
 
-const limit=10
-const offset=1
+const limit=5
+const offset=0
 export const getScrapbook = async()=>{
   const response = await axios({
       method:"get",
