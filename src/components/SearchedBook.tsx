@@ -4,7 +4,7 @@ import { styles } from '../style';
 import { bookData } from '../../types/type';
 import { useAddScrapMutation } from '../hooks/addScrapBook';
 import { useNavigation } from '@react-navigation/native';
-
+import { queryClient } from "../../App";
 export default function SearchedBook(Props: bookData) {
   console.log(Props)
   const { mutate } = useAddScrapMutation();
@@ -15,6 +15,7 @@ export default function SearchedBook(Props: bookData) {
       onSuccess: data => {
         console.log('ffffff', data);
         if (data.ok) {
+          queryClient.invalidateQueries("searchedBooks");
           navigation.navigate('Main');
         }
       },
