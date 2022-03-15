@@ -6,4 +6,4 @@ export const SEARCH_BOOK = '/books'
 export const MAKE_SCRAPBOOK = '/scrapbook'
 export const SCRAPBOOKS = '/scrapbooks'
 export const ME = '/user/me'
-
+export const STAR = "/star"

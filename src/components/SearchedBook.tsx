@@ -6,6 +6,7 @@ import { useAddScrapMutation } from '../hooks/addScrapBook';
 import { useNavigation } from '@react-navigation/native';
 
 export default function SearchedBook(Props: bookData) {
+  console.log(Props)
   const { mutate } = useAddScrapMutation();
   const { title, authors, thumbnail } = Props;
   const navigation = useNavigation();

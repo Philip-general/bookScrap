@@ -14,7 +14,7 @@ import { Provider } from "react-redux";
 import "./src/mocks/server";
 import{ MainRight} from "./src/components/header"
 import { styles } from "./src/style";
-
+import Detail from "./src/pages/Detail"
 const Stack = createNativeStackNavigator();
 const queryClinet = new QueryClient();
 
@@ -29,6 +29,7 @@ export default function App() {
       <QueryClientProvider client={queryClinet}>
         <NavigationContainer>
           <Stack.Navigator >
+            
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
             <Stack.Screen name="Main" component={Main}
@@ -39,6 +40,7 @@ export default function App() {
                 fontWeight: 'bold',
               }}}/>  
             <Stack.Screen name="BookSearch" component={BookSearch} />
+            <Stack.Screen name="Detail" component={Detail} />
           </Stack.Navigator> 
         </NavigationContainer>
       </QueryClientProvider>

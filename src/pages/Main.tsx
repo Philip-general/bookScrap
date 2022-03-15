@@ -1,63 +1,58 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useState,useEffect } from "react";
 import { View } from "react-native";
 import { styles } from "../style";
 import {useGetScrapBooks} from "../hooks/scrapbook"
 import { ScrapbookData } from "../../types/type";
 import Myscrapbook from "../components/Myscrapbook";
-import { useGetMe } from "../hooks/user";
 import Loading from "../components/Loading";
-
+import Auth from "../components/auth/Auth";
+import axios from "axios"
 export default function Main(){
     const navigation = useNavigation();
-    const {data:userData,isSuccess } = useGetMe();
-    if(isSuccess){
-        if(userData.user==null ||userData.user==undefined){
-            navigation.replace("Login")
-        }
-    }
-    
+    // const {data:userData,isSuccess } = useGetMe();
+    // if(isSuccess){
+    //     if(userData.user==null ||userData.user==undefined){
+    //         navigation.replace("Login")
+    //     }
+    // }
+    //const ACCESS_TOKEN = 'accessToken';
+
+    //console.log(axios.defaults.headers.common[ACCESS_TOKEN])
+    useEffect(()=>{
+    },[])
     const {data:scrapBookData, isLoading:scrapLoding, isError, refetch } = useGetScrapBooks();
+    let id=0;
     return(
         <View style={styles.Main}>
             <View style={styles.Main_medium}>
                 {scrapLoding? (<Loading/>):
-                (<View>
-                    {scrapBookData.documents?.map(({ title, authors, thumbnail,contents,scrapbookId,countscrap,useGroup,fixpoint }: ScrapbookData ) => {
-                        if(fixpoint==true){
-                           return (
-                            <Myscrapbook
-                            key={scrapbookId}
-                            authors={authors}
-                            thumbnail={thumbnail}
-                            title={title}
-                            contents={contents}
-                            scrapbookId={scrapbookId}
-                            countscrap={countscrap}
-                            useGroup={useGroup}
-                            fixpoint={fixpoint}
-                            />
-                            );
-                        }
-                    })}
-                    {scrapBookData.documents?.map(({ title, authors, thumbnail,contents,scrapbookId,countscrap,useGroup,fixpoint }: ScrapbookData ) => {
-                        if(fixpoint==false){
-                           return (
-                            <Myscrapbook
-                            key={scrapbookId}
-                            authors={authors}
-                            thumbnail={thumbnail}
-                            title={title}
-                            contents={contents}
-                            scrapbookId={scrapbookId}
-                            countscrap={countscrap}
-                            useGroup={useGroup}
-                            fixpoint={fixpoint}
-                            />
-                            );
-                        }
-                    })}
-                </View>)}
+                (<Auth>
+                    <View>
+                        {scrapBookData.scrapbooks?.map(({ book,star,countScraps }: ScrapbookData ) => {
+                            if(star===true){
+                            return (
+                                <Myscrapbook
+                                key={++id}
+                                book={book}
+                                countScraps={countScraps}
+                                />
+                                );
+                            }
+                        })}
+                        {scrapBookData.scrapbooks?.map(({ book,star,countScraps }: ScrapbookData ) => {
+                            if(star===false){
+                            return (
+                                <Myscrapbook
+                                key={++id}
+                                book={book}
+                                countScraps={countScraps}
+                                />
+                                );
+                            }
+                        })}
+                    </View>
+                </Auth>)}
             </View>
         </View>     
     )
