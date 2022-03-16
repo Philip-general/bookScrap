@@ -16,8 +16,9 @@ import{ MainRight} from "./src/components/header"
 import { styles } from "./src/style";
 import Detail from "./src/pages/Detail"
 const Stack = createNativeStackNavigator();
-const queryClinet = new QueryClient();
+export const queryClient = new QueryClient();
 
+//route.params.book.title 길이를 줄이는 function을 만들어서 줄이면 될듯?
 
 export default function App() {
   // 앱 실행시 재 로그인 시도
@@ -26,10 +27,9 @@ export default function App() {
   }, []);
   return (
     <Provider store={store}>
-      <QueryClientProvider client={queryClinet}>
+      <QueryClientProvider client={queryClient}>
         <NavigationContainer>
           <Stack.Navigator >
-            
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
             <Stack.Screen name="Main" component={Main}
@@ -40,7 +40,8 @@ export default function App() {
                 fontWeight: 'bold',
               }}}/>  
             <Stack.Screen name="BookSearch" component={BookSearch} />
-            <Stack.Screen name="Detail" component={Detail} />
+            <Stack.Screen name="Detail" component={Detail}
+              options={({route})=>({ title: route.params.book.title})}/>
           </Stack.Navigator> 
         </NavigationContainer>
       </QueryClientProvider>

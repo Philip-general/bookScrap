@@ -14,13 +14,13 @@ function textLengthOverCut(txt, len, lastTxt) {
         txt = txt.substr(0, len) + lastTxt;
     }
     return txt;
-  }
+}
 
-export default function Detail(Props){
+export default function Detail(props){
     //Myscrap이라는 컴포넌트 안에 이제 scrap.ts에서 만든 api가 작동되면 데이터만 넣으면 될듯?
     
-    const data = Props.route.params;
-    const new_contents =textLengthOverCut(data.book.contents,40)
+    const data = props.route.params;
+    const new_contents = textLengthOverCut(data.book.contents,40)
     return(
     <View style={{flex:1}}>
         <View style={{flex:1, margin: 20, display: "flex", flexDirection: "row"}}>
