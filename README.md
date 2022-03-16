@@ -15,18 +15,6 @@ React Native
 3. 모아둔 스크랩들을 예쁘고 깔끔하게 볼 수 있었으면 좋겠다.
 4. github 잔디처럼 내가 책 읽었던 흔적들을 볼 수 있는 달력이 있었으면 좋겠다.
 
-## 참고할 링크
-
-국내 도서 정보 API: https://steemit.com/kr/@anpigon/open-api
-
-카카오 도서 검색 API: https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide
-https://developers.kakao.com/tool/rest-api/open/get/v3-search-book
-
-> > 이걸로 하자
-
-curl > axios
-https://www.crocus.co.kr/1737
-
 ## 비교
 
 리더스:
